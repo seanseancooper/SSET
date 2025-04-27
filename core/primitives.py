@@ -20,7 +20,13 @@ class EMField:
         metadata: Optional[Dict[str, Any]] = None
     ):
         self.timestamp = timestamp
-        self.location = location  # lat, lon, optional alt
+
+
+        # is this location field static or mutated after the fact?
+        # What about signals having sources vs. being received?
+        # is this indicative of a position (where I am in the scope of
+        # the EMField) or a location (where the EMField is emanating from)
+        self.location = location  # lat, lon, optional altitude
         self.domain = domain  # 'time', 'frequency', 'spatial', 'symbolic'
         self.data = data
         self.metadata = metadata or {}

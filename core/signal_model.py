@@ -13,6 +13,19 @@ class SignalFrame:
         domain: str = "time",
         metadata: Optional[Dict[str, Any]] = None
     ):
+        """
+        Represents a segment or 'frame' of an EM signal in either time or frequency domain.
+
+        Parameters:
+        - timestamp: Time of capture (seconds since epoch)
+        - duration: Duration of the frame in seconds
+        - carrier_freq: Central frequency in Hz
+        - bandwidth: Signal width in Hz
+        - data: Array representing IQ samples, power spectrum, or waveform
+        - domain: 'time', 'frequency', or future: 'mixed'
+        - metadata: Arbitrary static or dynamic metadata
+        """
+
         self.timestamp = timestamp
         self.duration = duration
         self.carrier_freq = carrier_freq
@@ -20,6 +33,26 @@ class SignalFrame:
         self.data = data
         self.domain = domain
         self.metadata = metadata or {}
+
+# 📐 Metadata as an Extensible Symbol Layer
+    # The metadata dict is where semiotic affordances can begin:
+    #
+    #     {
+    #       "emitter_id": "DEMOD_X3",
+    #       "modulation": "QPSK",
+    #       "intent": "Beacon",
+    #       "environment": "Urban, Multi-path",
+    #       "confidence": 0.87
+    #     }
+    #
+    #
+    # We can even embed context over time:
+    #
+    #     "history": [
+    #       {"t": 0, "modulation": "CW"},
+    #       {"t": 5, "modulation": "QPSK"},
+    #       {"t": 10, "modulation": "Noise Burst"}
+    #     ]
 
     def to_frequency_domain(self):
         if self.domain == "frequency":
