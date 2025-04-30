@@ -3,6 +3,7 @@
 import numpy as np
 from typing import Optional, Dict, Any
 
+
 class TimeFrequencyFrame:
     """
     Represents a signal as a matrix across time and frequency dimensions.

@@ -3,12 +3,14 @@
 from typing import Optional, Dict, Any, Tuple, Union
 import numpy as np
 
+
 class Emitter:
     def __init__(self, id: str, description: str, platform_type: str, known_bias: Optional[Dict[str, Any]] = None):
         self.id = id
         self.description = description
         self.platform_type = platform_type
         self.known_bias = known_bias or {}
+
 
 class EMField:
     def __init__(
@@ -30,6 +32,7 @@ class EMField:
         self.domain = domain  # 'time', 'frequency', 'spatial', 'symbolic'
         self.data = data
         self.metadata = metadata or {}
+
 
 class SignalEvent(EMField):
     def __init__(
@@ -53,6 +56,7 @@ class SignalEvent(EMField):
         self.emitter = emitter
         self.modulation = modulation
         self.snr = snr
+
 
 class SignalMessage(SignalEvent):
     def __init__(

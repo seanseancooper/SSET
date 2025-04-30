@@ -7,6 +7,8 @@
 # Intent modeling: What operational purpose is this signal serving?
 #
 # ### signal_semiotics_toolkit/semiotic/interpreter.py
+from typing import Optional, Dict, Any
+
 
 class SignalInterpretation:
     # this encapsulates a result, right?
