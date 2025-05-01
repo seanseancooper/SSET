@@ -34,7 +34,7 @@ class SignalFrame:
         self.domain = domain
         self.metadata = metadata or {}
 
-# 📐 Metadata as an Extensible Symbol Layer
+    # 📐 Metadata as an Extensible Symbol Layer
     # The metadata dict is where semiotic affordances can begin:
     #
     #     {
