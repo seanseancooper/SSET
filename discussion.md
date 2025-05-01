@@ -1067,9 +1067,28 @@ Here’s a starting structure for a `TimeFrequencyFrame` class — letting you t
 
 Let’s keep pushing into these higher-dimensional models!
 
+---
+
+## **IDeA:**
+### instrument known 'logistics' with synthetic labels as 'training/test' data.
+>- separate 'command and control' from 'subordinates' actors in a battle scenario. [who, what]
+>- instrument actor logistics in both temporal and a geo spaces. [when, where, what]
+>- label the movements and commands.[why]
+>- generate 'synthetic' signals for the movements (think 'call, and response')[how, when].
+>- Label the data: use attributes of the synthetic signals to generate labels.
+>- Feed this geo-temporal, labeled, synthetic data to a LLM as training data.
+>- train the model.
+>>bonus points: using **actual** data. Not sure of fidelity if any availability. I'm thinking use a 'WW III battle simu' and have the _battle sim generate the timing, geo and signals_.
+### Test the model with remaining 'test' data. Goals are...
+>- have the model make predictions, inferences & classifications on the signals and their symbols 'label probability'.
+>> **label probability**: given all previously 'labeled' signals and their features, structure; what features of the current signal *match a previously **labeled** signal*.
+>> Think: "the postman always rings twice"
+>- use confusion matrices to distinguish groups and sets of features at various distributions which have interrelated time and frequency domain features.
+>- Build a model of signal behavior over time by using arrays of 'SignalFrame' representing a time/frequency 'domain' continuum.
 
 
 
+ 
 
 
 
