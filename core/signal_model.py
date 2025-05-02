@@ -55,6 +55,10 @@ class SignalFrame:
     #     ]
 
     def to_frequency_domain(self):
+        # Include phase in frequency domain — Right now np.abs(spectrum) discards important phase information.
+        #     Consider returning complex or (magnitude, phase) tuples.
+        # Add a check or parameter for windowing, e.g., Hanning, to reduce spectral leakage.
+
         if self.domain == "frequency":
             return self
         spectrum = np.fft.fft(self.data)
