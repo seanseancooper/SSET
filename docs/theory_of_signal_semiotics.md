@@ -61,19 +61,27 @@ This model builds a foundation for tools that don't just classify signals—they
 
 ---
 --- 
-# PREAMBLE
-We experience the world in 3 dimensions, bounded and directed by time.
+# 0. PREAMBLE
+We experience the world in 3 dimensions, bounded and directed by time. It is both 'unidirectional' AND a sequencing mechanism.
 - Only forward moovement, hindsight.
 - Missed dimensions, features, wrong ranges, imperceptible, unknown, functional or statistic.
 
-What if we could mask or altogether remove these constraints through visualization, allowing us to see the unseen and know thee unknown?
-# I. Transposition & Transformation.
-- **Transposition**: Moving from A->B ... think "A *"
-   - time-domain function: 'manipulation of A', 'A x many times'm 'timing' and 'timestamp'
-   - related too frequency domain wrt a having been the label A for some observablee amount of time before being labeled B.
-- **Transformation**: Changing A->B .... think "ƒ(A)"
-   - frequency domain: function of acting on A, the result of processing A, Analysis of A
-   - related to time domain wrt "being". Because ƒ exists and acts, it presumably "occurs" and produces "B", the result of the occurance of ƒ.
+Visualization is a perceptual prosthesis for understanding 'hidden' dimensions; We often miss features that are hidden across imperceptible dimensions—be they statistical, functional, or entirely unknown. 
+
+What if we could mask or altogether remove these constraints through visualization, allowing us to 'see the unseen' and 'know the unknown'? 
+
+
+# 1. Transposition & Transformation.
+- ### **Transposition**: Moving from A -> B 
+   - think "A *", many consecutive "A" moving to "B".
+   - time-domain function: 'manipulation of A', 'A x many times', 'timing' or 'timestamp'..
+   - implies a collection of 'time-shifted' A.
+   - related to frequency domain wrt. a having been the label A for some observable amount of time before being labeled B; a 're-labelling' operation that _may_ be sample rate driven.
+- ### **Transformation**: Changing A->B
+   - think "ƒ(A)"
+   - transformation can also occur in time (e.g., modulation)
+   - Frequency domain function: function of acting on A, the result of processing A, Analysis of A
+   - Related to time domain wrt "being". Because ƒ exists and acts, it presumably "occurs" and produces "B", the result of the occurrence of ƒ. "ƒ is a functional operator acting on A, producing B as an analyzable outcome."
 
 > Transposition and Transformation are interrelated.
 
@@ -117,7 +125,7 @@ This paradigm could be represented by the 'SignalFrame' type.
 
 ### 📐 Metadata as an Extensible Symbol Layer
 
-The metadata dict is where semiotic affordances can begin:
+The metadata dict is where semiotic affordances can begin. Metadata fields are interpretable hooks, not guarantees of truth. Especially in using ML inference:
 ```json
     
     
@@ -143,42 +151,71 @@ We can even embed context over time:
      ]
 
 ```
+
+History could be structured as a field inside metadata):
+```json
+"metadata": {
+  ...
+  "history": [
+    {"t": 0, "modulation": "CW"},
+    {"t": 5, "modulation": "QPSK"}
+  ]
+}
+
+```
+
 > #### SignalFrames occur at a "_sampling rate_".
 
-# II. "It's All EM Field"
+# 2. "It's All EM Field"
 
-Humans can perceive a wide range of sounds, typically from 20 Hz to 20,000 Hz, and light wavelengths between 380 and 750 nanometers. This translates to an audible spectrum encompassing a wide range of pitches and a visual spectrum encompassing the colors we see. -- https://www.google.com/search?q=rannge+of+humabn+perception+vvission%2C+hearing&oq=rannge+of+humabn+perception+vvission%2C+hearing&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTE5MTkxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8
+Laying the groundwork for a unified sensory mapping, applying transposition as a meta-concept that refers to any shift across representational domains (e.g., time to frequency), including frequency shifts, whether en masse or discrete.
+
+In music, "transposition" means shifting a signal up or down in pitch — which is a frequency shift. You're invoking that metaphor in a way that extends beyond music, and it fits well with how frequency hopping, spectral analysis, and retargeting across domains works.
+
+Distinction from Modulation matters; Modulation does often include changes in frequency (e.g., FM), but what distinguishes modulation is the encoding of information through variation — of amplitude, phase, frequency, or another carrier property. Modulation can be a mechanism of transposition, but not all transpositions are modulations.
+
+
+
+"Humans can perceive a wide range of sounds, typically from 20 Hz to 20,000 Hz, and light wavelengths between 380 and 750 nanometers. This translates to an audible spectrum encompassing a wide range of pitches and a visual spectrum encompassing the colors we see. -- https://www.google.com/search?q=rannge+of+humabn+perception+vvission%2C+hearing&oq=rannge+of+humabn+perception+vvission%2C+hearing&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTE5MTkxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8
 
 "A radio wave is a form of light. This is an unusual thought for many people so we must again revisit the concept of the entire Electromagnetic Spectrum. In the entire spectrum, visible light is only a very small portion of the Electromagnetic Spectrum. X-Rays, for example, are also light but you cannot see them. The same can be said for Infrared light, which can only be detected using special equipment. So a radio wave is just another wave of light that cannot be seen by human eyes. But, they are all around us and they have many common properties with visible light. Radio waves travel at the same speed as light � approximately 186,000 miles per second." -- https://www.universalclass.com/articles/self-help/ham-radio-basics.htm
 
 ![EM_Spectrum_Properties_edit.svg.jpg](images/EM_Spectrum_Properties_edit.svg.jpg)
 
-Transposition: Movving from A to B
+Transposition: Moving from A to B
 
 - Changes fro one frequency/frequeny range to another
 - Informatioon ccannot exist before it exists. (feature=change)
-- implies cchange in 'rate'
+- implies change in 'rate'
 - Manipulatioon of sampling rate is the tool.
->- we ccannnot change the event only observe it.
->- the only logical thing to innstrument is the SR, we ccan't change anything else.
+>- We cannot alter the originating event, but we can alter how we sample and represent it.
+>- the only logical thing to instrument is sample rate, we can't change anything else.
 
 
 #### investigate...
-- compression/expansion effects during transpoosition (time domain scaling/freq domain invversee scaling)
-- error rate during transpoositionn (pure math vvs. reality)
+- compression/expansion effects during transposition (time domain scaling/freq domain inverse scaling)
+- error rate during transposition: Explore how ideal mathematical transformations diverge from physical or noisy implementations.
 >- optimization  problem.
 - changes in 'dynamics' in transposition and inter-relational changes in feature dynamics in transposition.
-- Q: did it occur instantaineously?: Nope. Took some time no matter hoow small -> "speed of reality"
+- Q: did it occur instantaneously?: Nope. Took some time no matter how small -> "the speed of reality"
 
-# III. Semiotic Relationship Between 'Signal' and Meaning
+# 3. Semiotic Relationship Between 'Signal' and Meaning
 
 ![semiotic.jpg](images/semiotic.jpg)
 > Communications theory assigns three roles:
-> - '**symbol**': The _signal_. That which 'contains' information, and is composed of 'bias', 'variance', and 'noise'.
+> - '**symbol**': The _signal_. That which 'contains' information.. Symbols are structured patterns within the signal, influenced by and composed of 'bias', 'variance', and 'noise'.
 > - '**actor**': The _recipient_. That which acts/understands on information contained in the signal.
 > - '**meaning**': The _understanding_. That which endows a symbol as/with information to the recipient.
-> Because we can observe the actor, we could infer the meaning of the symbol.
-> Having enough 'observations' and 'meanings', we can form a 'language' based on the symbols.
+>   - Because we can observe the actor, we could infer the meaning of the symbol. In this case, referring to semiotic inference via system output: if an automated agent receives a signal and then takes action, we can treat that action as the output of its interpretation. This lets us reverse-engineer meaning.
+>   - Having enough 'observations' and 'meanings', we can form a 'language' based on the symbols.
+>> That’s fundamentally how machine learning models learn meaning through interaction.
+
+>> “By observing the behavior of the actor in response to a symbol, we can infer the meaning that the actor has ascribed to it — allowing us to construct a language of signal interpretation through automated observation.”
+
+```commandline
+[Signal (Symbol)] → [Actor System] → [Response] → [Observer System] → [Inferred Meaning]
+
+```
 
 ![signalframe.jpg](images/signalframe.jpg)
 
@@ -186,29 +223,36 @@ A SignalFrame type can be operationalized to allow Large Language Models to infe
 
 These observations can be serialized to form observations of the time/frequency domain features (signal) and arbitrary information (symbols) inherent in the signal manifestation. 
 
-
-# IV. Tools for Signal Semiotics
+# 4. Tools for Signal Semiotics
 
 Planning for development of SSET toolkit and API assets.
-> ### A. Core Functionality 
->- Acessors/Mutators for fields
+> ### A. Core Functionality & Collections
+>- Accessors/Mutators for fields
 >- Collections API (deal with collections of SignalFrame type)
 >  - operations on collections
 >  - create/manipulate collections
 >    - functional interfaces, programming
->- Processing the type
+>- Processing the SignalFrame type
 >  - SR manipulation
 >  - FFT/IFFT
 >    - core functionality, performance. speed needed here.
 >  - time/freq domain manipulations
+>    - sequencing and timeline analysis.
 >    - deal with time, frequency features 'well'.
 >  - Functional / User / Synthetic interfaces to manipulate data ad hoc.
-> ### B. Visualization of Types and Collections of Types
+> ### B. Visualization of Types
+>- displaying data contained within the type. 
 >- reading data formats
 >- transforming data formats
 >- writing data formats
->- Interfaces, Integrations with Visualization Tools and Libraries.
+>- Interfaces, Integrations with 3rd party visualization tools and libraries.
 >- - d3.js, MPL, Pandas, Seaborn, etc.
 >  - Kibana, Graphana, dashboards
 >  - Geospatial imaging tools
->- 
+> ### C. Inference
+>- Integrates LLMs or ML classifiers.
+>  - pattern discover. 
+>  - Inference, prediction and semantic/semiotic extraction 
+>  - semiotic classification .
+
+> 
