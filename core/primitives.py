@@ -11,25 +11,25 @@ class Emitter:
         self.platform_type = platform_type
         self.known_bias = known_bias or {}
 
-    def get_id(self):
+    def get_id(self) -> str:
         return self.id
     
-    def get_description(self):
+    def get_description(self) -> str:
         return self.description
 
     def set_description(self, description:str):
         self.description = description
     
-    def get_platform_type(self):
+    def get_platform_type(self) -> str:
         return self.platform_type
 
     def set_platform_type(self, platform_type: str):
         self.platform_type = platform_type
     
-    def get_known_bias(self):
+    def get_known_bias(self) -> Optional[Dict[str, Any]]:
         return self.known_bias
 
-    def set_known_bias(self, known_bias: dict):
+    def set_known_bias(self, known_bias: Optional[Dict[str, Any]]):
         self.known_bias = known_bias
 
 
@@ -49,22 +49,22 @@ class EMField:
         self.data = data
         self.metadata = metadata or {}
 
-    def get_timestamp(self):
+    def get_timestamp(self) -> float:
         return self.timestamp
 
-    def get_location(self):
+    def get_location(self) -> Tuple[float, float, Optional[float]]:
         return self.location
 
-    def get_domain(self):
+    def get_domain(self) -> str:
         return self.domain
 
-    def get_data(self):
+    def get_data(self) -> np.ndarray:
         return self.data
 
     def set_data(self, data: np.ndarray):
         self.data = data
 
-    def get_metadata(self):
+    def get_metadata(self) -> Optional[Dict[str, Any]]:
         return self.metadata
 
     def set_metadata(self, metadata: Optional[Dict[str, Any]]):
@@ -94,22 +94,22 @@ class SignalEvent(EMField):
         self.modulation = modulation
         self.snr = snr
 
-    def get_duration(self):
+    def get_duration(self) -> float:
         return self.duration
 
-    def get_carrier_freq(self):
+    def get_carrier_freq(self) -> float:
         return self.carrier_freq
 
-    def get_bandwidth(self):
+    def get_bandwidth(self) -> float:
         return self.bandwidth
 
-    def get_emitter(self):
+    def get_emitter(self) -> Optional[Emitter]:
         return self.emitter
 
-    def get_modulation(self):
+    def get_modulation(self) -> Optional[str]:
         return self.modulation
 
-    def get_snr(self):
+    def get_snr(self) ->Optional[float]:
         return self.snr
 
 
@@ -134,13 +134,13 @@ class SignalMessage(SignalEvent):
         self.decoded = decoded
         self.semantics = semantics
 
-    def get_decoded(self):
+    def get_decoded(self) -> Optional[Union[str, bytes, Dict]]:
         return self.decoded
 
     def set_decoded(self, decoded: Optional[Union[str, bytes, Dict]]):
         self.decoded = decoded
 
-    def get_semantics(self):
+    def get_semantics(self) -> Optional[str]:
         return self.semantics
 
     def set_semantics(self, semantics: Optional[str]):

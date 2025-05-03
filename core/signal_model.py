@@ -34,21 +34,21 @@ class SignalFrame:
         self.domain = domain
         self.metadata = metadata or {}
 
-        self.phase = None
-        self.magnitude = None
+        self.phase = float
+        self.magnitude = np.ndarray
         self.window = None
         self.set_magnitude_phase()  # calculate on init
 
-    def get_timestamp(self):
+    def get_timestamp(self) -> float:
         return self.timestamp
 
-    def get_duration(self):
+    def get_duration(self) -> float:
         return self.duration
 
-    def get_carrier_freq(self):
+    def get_carrier_freq(self) -> float:
         return self.carrier_freq
 
-    def get_bandwidth(self):
+    def get_bandwidth(self) -> float:
         return self.bandwidth
 
     def get_data(self):
@@ -58,31 +58,33 @@ class SignalFrame:
         self.data = data
         self.set_magnitude_phase()  # recalculate for new data
 
-    def get_domain(self):
+    def get_domain(self) -> str:
         return self.domain
 
-    def get_metadata(self):
+    def get_metadata(self) -> Optional[Dict[str, Any]]:
         return self.metadata
 
     def set_metadata(self, metadata: Optional[Dict[str, Any]]):
         self.metadata = metadata
 
-    def get_phase(self):
-        _, p = self.set_magnitude_phase()
+    def get_phase(self) -> float:
+        m, p = self.set_magnitude_phase()
         return p
 
-    def get_magnitude(self):
+    def get_magnitude(self) -> np.ndarray:
         m, _ = self.set_magnitude_phase()
         return m
 
-    def set_magnitude_phase(self):
+    def set_magnitude_phase(self) -> (np.ndarray, float):
         data = self.data                # default
         if self.domain == "frequency":  # 'mixed' TBD
             data = np.fft.fft(self.data)
-        return  np.abs(data), np.angle(data)
+        m = np.abs(data)
+        p = np.angle(data)
+        return m, p
 
-    def get_window(self):
-        return self.window
+    def get_window(self) -> object:
+        return self.window if self.window else None
 
     def set_window(self, window: np.hamming, size: 100):
         self.window = window(size)
