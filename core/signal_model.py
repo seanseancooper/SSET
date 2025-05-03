@@ -43,6 +43,7 @@ class SignalFrame:
         return self.timestamp
 
     def get_duration(self) -> float:
+        # calculate this from self.data
         return self.duration
 
     def get_carrier_freq(self) -> float:
