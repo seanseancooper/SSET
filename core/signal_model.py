@@ -1,6 +1,7 @@
 import numpy as np
-from typing import Optional, Dict, Any
+from scipy.signal import get_window
 
+from typing import Optional, Dict, Any
 
 class SignalFrame:
     def __init__(
@@ -85,10 +86,10 @@ class SignalFrame:
         return m, p
 
     def get_window(self) -> object:
-        return self.window if self.window else None
+        return self.window
 
-    def set_window(self, window: np.hamming, size: 100):
-        self.window = window(size)
+    def set_window(self, window, size):
+        self.window = get_window(window, size)
 
     def to_frequency_domain(self):
         if self.domain == "frequency":
