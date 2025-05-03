@@ -21,8 +21,35 @@ class TimeFrequencyFrame:
         self.duration = duration
         self.freq_min = freq_min
         self.freq_max = freq_max
-        self.tf_matrix = tf_matrix  # 2D array: time (rows) x frequency (cols)
+        self.tf_matrix = tf_matrix              # 2D array: time (rows) x frequency (cols)
         self.metadata = metadata or {}
+
+    def get_start_time(self) -> float:
+        return self.start_time
+
+    def get_duration(self) -> float:
+        return self.duration
+
+    def set_freq_min(self, freq_min: float):
+        self.freq_min = freq_min
+
+    def get_freq_min(self) -> float:
+        return self.freq_min
+
+    def set_freq_max(self, freq_max: float):
+        self.freq_max = freq_max
+
+    def get_freq_max(self) -> float:
+        return self.freq_max
+
+    def get_tf_matrix(self) -> np.ndarray:
+        return self.tf_matrix
+
+    def set_metadata(self, metadata: Optional[Dict[str, Any]] = None):
+        self.metadata = metadata
+
+    def get_metadata(self) -> Optional[Dict[str, Any]]:
+        return self.metadata
 
     def get_time_axis(self) -> np.ndarray:
         return np.linspace(self.start_time, self.start_time + self.duration, self.tf_matrix.shape[0])
