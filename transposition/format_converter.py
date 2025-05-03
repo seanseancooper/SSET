@@ -24,4 +24,10 @@
 # [FormatWriter(format_type, format_spec)]: accept a format_type (input), a format spec (output) and write data.
 #       other = FormatProcessor(format_type.OtHeR, processed)
 #
-# Synthetic vision of SAR or IR signals
+# write to array: This is the default, core op + JSON.
+# write to file of type 'format': this could be limited to a couple common raster formats (jpeg, tiff), but we
+#       will also need 'vector' for maps & mapping. I don't believe it makes sense to write binary formats except HD5.
+# write to store, database, persist layer: def write to MQ & Elastic for internal offline proccessing.
+
+
+
