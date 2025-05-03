@@ -11,7 +11,7 @@
 # Volumetric/haptic representations (optional / future)
 #
 #
-# rf2audio.py: Convert I/Q samples to WAV for human listening.
+
 
 # takes RF energy and creates an array of that data as audio.
 # read a segment of spectrum from SDR stick.
