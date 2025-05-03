@@ -4,7 +4,7 @@
 class BitStreamExtrator:
     """ Taking an AM/FM/PSK signal and extract the baseband signal. """
 
-    def __init__(self, signal, proc_options={}):
+    def __init__(self, signal, proc_options):
         self.signal = signal
         self.proc_options = {}
         self.extracted = None
@@ -98,7 +98,7 @@ class BitStreamExtrator:
     def process_signal(self, signal, type, proc_options):
 
         type = type or self.get_signal_type()
-        extracted = None
+        ext_signal = None
         extract_options = proc_options['proc_options']
 
         if type:  # modulation types
