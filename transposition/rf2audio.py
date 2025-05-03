@@ -1,4 +1,8 @@
 # Transposition Layer: Making the Invisible Perceivable
+# rf2audio.py: Convert I/Q samples to WAV for human listening.
+
+
+
 # Convert raw EM data into formats that can be sensed and interacted with:
 #
 # Audio renderings of RF/IF signals (sonification)
