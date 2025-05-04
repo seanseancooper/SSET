@@ -1,3 +1,11 @@
+#  Copyright (c) 2025 Sean D. Cooper
+#
+#  This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+#
+#
+#  This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+#
+
 #   Range objects implement the collections.abc.Sequence ABC, and provide features
 #   such as containment tests, element index lookup, slicing and support
 #   for negative indices. The advantage of the range type over a regular list or
