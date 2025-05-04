@@ -46,6 +46,9 @@ Development and synthesis assisted by ChatGPT.
 ## Title Proposal
 **Toward a Semiotics of Signals** — Whitepaper/article forthcoming.
 
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details. Commercial licensing available on request.
+
 ---
 
 ## Future Work
