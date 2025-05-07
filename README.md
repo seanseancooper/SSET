@@ -4,14 +4,14 @@
 
 ## Overview
 
-This toolkit explores a foundational approach to interpreting electromagnetic (EM) emissions as a form of language. We frame signal analysis through two core concepts: **transposition** (making signals perceptible) and **transformation** (making signals intelligible).
+This toolkit explores a foundational approach to interpreting electromagnetic (EM) emissions as a form of language. We frame signal analysis through two core concepts: **transposition** (making signals perceptible) and **transformation** (making the 'symbols' intelligible).
 
-By treating EM emissions as communicative acts rather than just data or interference, we gain affordances in analysis, understanding, and potentially interaction. This approach draws from semiotics, signal processing, cognitive electronic warfare, and information theory.
+By treating EM emissions and their utilizatioon patternss as communicative acts rather than just data or interference, we gain affordances in analysis, understanding, and potentially interaction. This approach draws from semiotics, signal processing, cognitive electronic warfare, and information theory.
 
 See [Theory of Signal Semiotics](/docs/theory_of_signal_semiotics.md)
 
 
-## Toolkit Structure
+## Toolkit Structure: NEEDS UPDATE !
 
 ```
 signal_semiotics_toolkit/
@@ -36,12 +36,12 @@ signal_semiotics_toolkit/
 │   └── experiments.ipynb
 └── docs/
     └── theory_of_signal_semiotics.md
+    
 ```
 
 ## Credits
-Design and concept Sean D. Cooper
-
-Development and synthesis assisted by ChatGPT.
+Design, concept, software development: Sean Darwin Cooper
+Software development and mathematical synthesis: ChatGPT 4.0
 
 ## Title Proposal
 **Toward a Semiotics of Signals** — Whitepaper/article forthcoming.
@@ -52,9 +52,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) f
 ---
 
 ## Future Work
-- LLM-based inference systems
-- Integration with real-time SDR
 - Mapping signal ecosystems as linguistic fields
+- Integration with real-time SDR
+- LLM-based inference systems
 - Human-accessible visual/auditory renderings of complex RF behavior
 - Formal mathematical modeling of bias/variance/noise as signal syntax/semantics/pragmatics
 

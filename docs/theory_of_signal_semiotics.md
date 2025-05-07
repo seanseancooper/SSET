@@ -4,8 +4,7 @@
 
 This toolkit explores a foundational approach to interpreting electromagnetic (EM) emissions as a form of language.
 We frame signal analysis using two core concepts: **transposition** (the act of making signals perceptible) and
-**transformation** (the act of making 'symbols' intelligible).
-# <H1><FONT COLOR='RED'>TO BE CLEAR, WE ARE AFTER THEY SYMBOL, NOT JUST THE SIGNAL.</FONT></H1>
+**transformation** (the act of making 'symbols' intelligible).<H1><FONT COLOR='RED'>TO BE CLEAR, WE ARE AFTER THEY SYMBOL, NOT JUST THE SIGNAL.</FONT></H1>
 By treating EM emissions as communicative acts rather than just data or interference, we gain affordances in analysis,
 understanding, and potentially interaction. This approach draws from semiotics, signal processing, cognitive electronic
 warfare, and information theory.
@@ -14,8 +13,8 @@ warfare, and information theory.
 
 ### Transposition
 Convert EM emissions into perceptible form:
-- Audio rendering 
 - Visualization (waveforms, spectrograms, spatial mappings)
+- Sonification (Audio rendering)
 
 ### Transformation
 Apply data science, algorithms or models to extract meaning:
@@ -65,6 +64,8 @@ This toolkit intends to instrument the classical model in a manner that builds a
 
 ### **Transposition**: Move from A -> B 
 Processing the signal to move it from one range of the eelectromagnetic spectrun into another range (visible or audible) for consumption. 
+   - Visualization.
+   - Sonification.
    - time-domain function: 'manipulation of A', 'A x many times', 'timing' or 'timestamp'..
    - implies a collection of 'time-shifted' A.
    - related to frequency domain wrt. a having been the label A for some observable amount of time before being labeled B; a 're-labelling' operation that _may_ be sample rate driven.
