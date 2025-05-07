@@ -54,7 +54,6 @@ Building on communications theory, we model the classical communication triad co
 This toolkit intends to instrument the classical model in a manner that builds a foundation for tools that don't just classify signals—they *interpret* them.
 
 ># Chapter 2: Transposition & Transformation
-
 >## Overview
 > In music, "transposition" means shifting a signal up or down in pitch — a 'frequency' shift. In Signal Semiotics, we're invoking that metaphor in a way that extends beyond music, across the entire EM spectrum. 
 > 
@@ -124,8 +123,6 @@ Goal: Get symbols.
 >1. Communications Theory
 >2. Semiotic Relationship Between 'Signal' and Meaning
 >3. Symbols vs. Words
->4. 
->5. 
 >## Overview
 > Fill me in. 
 
@@ -138,8 +135,6 @@ Communications theory defines three major 'roles' in the communication process; 
 A **'Symbol'** can be defined as a 'structured pattern within a signal'. It posesses a unique form that distinguishes 
 it from all other symbols. It is influenced by and is contained in a signal composed of 'bias', 'variance', and 'noise'.
 
-
-
 **'Meaning'** is that which endows a symbol with information to a recipient. In this proposed model of language, 
 understanding is driven by concensus, agreement and convention. For instance, consider any commonly understood 'label' 
 (e.g. "Tomato") and the corpus of information that the label indicates or contextualizes. In our model, that knowledge 
@@ -149,10 +144,10 @@ Finally, in this model the **'Actor'** is not the recipient, but the _result_ of
 information _revealed_. (n.b. In some ccases, this may be framed as a 'choice' to 'act' or 'not to act', as opposed to 
 the "result of physically acting" which implies the choice to act).
 
-In this model, because we can observe the '**'actor'**', we could infer the meaning of the symbol. Having enough 
-'observations' and 'meanings', we can form a 'language' based on the patterns created in the utilization of the 
-symbols as observed. This allow us the opportunity to _reverse-engineer language to understand semiotic (Symbol) 
-meaning_ using machine learning to accquire semantic context.
+Because we can observe the '**'actor'**', we could infer the meaning of the symbol. Having enough 'observations' and 
+'meanings', we can form a 'language' based on the patterns created in the utilization of the symbols as observed. This 
+allow us the opportunity to _reverse-engineer language to understand semiotic (Symbol) meaning_using machine learning 
+to accquire semantic context.
 
 For instance, if an automated agent receives a signal, understands it and then takes 'action', we treat/call that 
 result the 'actor'.
@@ -177,7 +172,9 @@ communication.
 > for our focus -- artificial systems.
 
 ### Perceptual Constraints and Symbol Resolution
-Organisms differ. Disregarding the issue of langauge in the species in question, assertions can be made wrt their _ability_ to perceive and resolve symbols. Using these assertions and communications theory, this model proposes a systems and method by which languages can be reverse-engineered based on utilization patterns. 
+Organisms differ. Disregarding the issue of langauge in the species in question, assertions can be made wrt their 
+_ability_ to perceive and resolve symbols. Using these assertions and communications theory, this model proposes a 
+systems and method by which languages can be reverse-engineered based on utilization patterns. 
 
 Organisms differ in their ability to perceive and resolve symbols due to variations in:
 
@@ -212,20 +209,14 @@ $$
 $$
 
 
-
-
-
-
-
-
-As a 'thought experiment' let's review this design in the comparative context of common organisms AND a hypothetical Large Language 
-Model. We'll start with the animals.
+As a 'thought experiment' let's review this design in the comparative context of common organisms AND a hypothetical 
+Large Language Model. We'll start with the animals.
 
 ### Species Comparison
 
-A structured table was developed to compare perception-based symbol use across species (Humans, Felidae (Cats), 
-Canidae (Dogs), Aves (Birds), Insecta (Insects), Olfactores (Fish), and Machina (AI). Metrics included perceptual speed, 
-sensory bandwidth, visual field, symbolic resolution, and extrapolated linguistic structure.
+A structured table was developed to compare perception-based symbol use across species (Homo Sapiens, Felidae, 
+Canidae, Aves, Insecta, Olfactores, and Machina (AI). Metrics included perceptual speed, sensory bandwidth, visual 
+field, symbolic resolution, and extrapolated linguistic structure.
 
 The key insight: Assuming the species has a language, the **species likely adapted their symbolic systems to fit within 
 the constraints of their sensory modalities and ecological context**. Birds, for example, may use rapid symbol 
@@ -277,31 +268,34 @@ $$
 | Longest Symbol            | \~45 chars   | growl          | howl           | song-seq.     | scent chain | complex call   | infinite      |
 | Most Frequent Symbol      | articles     | alarm          | bark           | tweet         | trail mark  | social ping    | tokens        |
 
+#### Notes:
+* **Machina** represents artificial systems with theoretically unlimited symbol rates and structural representations 
+* (vectors, matrices, codepoints).
+* **Symbol Discern Rate** is analogous to WPM but scaled for species’ perceptual speed and bandwidth.
+* “Distinct Symbol Types” reflects lexical diversity—though approximate, it suggests range and complexity.
+* Aves show high perceptual speed with lower bandwidth, implying higher symbol compression and repetition (e.g., bird songs).
+* Insecta rely more on pheromonal or vibration-based symbols (slow bandwidth, but high clarity).
+* Humans show complex symbol combinations (words) and large corpus size due to rich sensory resolution.
+
+---
+
 >#### Language Compression as an Evolutionary Strategy?
 >
->Momentairily side-stepping the missing 'actor' category, if we were to consider each taxa a System using a Lanuage, then these Systems economize:
+>Momentairily side-stepping the 'actor' category, if we were to consider each taxa a 'System' possessing and using a 
+> Lanuage, then these systems economize:
 >* **Symbol use**: fewer, multi-functional symbols
 >* **Repetition**: frequent reuse of core symbols
 >* **Contextual layering**: multiple meanings encoded into symbol variation (tone, repetition, pattern)
+
+
+
 >### 🔁 Meaning Compression Ratio
 >To compress conceptual space into symbolic channels, we define:
 >$$
 MCR = \frac{|\text{Contextual Actions}|}{|\text{Available Symbols}|}
->$$
+$$
 >* High $MCR$: Dense communication (e.g., bird alarm calls)
 >* Low $MCR$: Redundant, expansive communication (e.g., human speech)
-
----
-
-#### Notes:
-
->* **Machina** represents artificial systems with theoretically unlimited symbol rates and structural representations (vectors, matrices, codepoints).
->* **Symbol Discern Rate** is analogous to WPM but scaled for species’ perceptual speed and bandwidth.
->* “Distinct Symbol Types” reflects lexical diversity—though approximate, it suggests range and complexity.
->* Aves show high perceptual speed with lower bandwidth, implying higher symbol compression and repetition (e.g., bird songs).
->* Insecta rely more on pheromonal or vibration-based symbols (slow bandwidth, but high clarity).
->* Humans show complex symbol combinations (words) and large corpus size due to rich sensory resolution.
->
 
 ---
 
@@ -338,7 +332,18 @@ This understanding is core to advancing the 'Signal Semiotics' framework into a 
 >In artificial systems, we can observe the *full arc* from reception → understanding → result, enabling 
 reverse-inference of meaning by analyzing outcomes.
 
-# 🧮 A Refined Mathematical Model of Symbolic Communication
+># 🧮 Chapter 6: A Refined Mathematical Model of Symbolic Communication
+>### Overview
+>
+
+We originally conceptualized language semiotically as a function:
+
+$$
+\text{Signal} = f(\text{Symbol}, \text{Meaning})
+$$
+
+But this is insufficient for our purposes. It lacks the final and arguably **most empirically valuable part** of the 
+exchange: the **Actor** — the *observable result* of interpreting the signal.
 
 The **Actor** is crucial to understanding not only whether a symbol was understood, but *how it was used*. It completes 
 the communication loop. This allows us to model Internal processes (decoding symbols) and External consequences 
@@ -350,15 +355,6 @@ the communication loop. This allows us to model Internal processes (decoding sym
 | **Symbol**  | "Fire" → acoustic, visual waveform        | Perceived, transmitted (acoustic, EM, gesture)                    |
 | **Meaning** | "Danger", "heat", "weapon", "excitement"  | Chosen based on context, experience personal, or shared)          |
 | **Actor**   | Duck, run, smile, shout back, freeze      | Observable behavior (WPM, motor act chosen (from an action space) |
----
-We originally conceptualized language semiotically as a function:
-
-$$
-\text{Signal} = f(\text{Symbol}, \text{Meaning})
-$$
-
-But this is insufficient for our purposes. It lacks the final and arguably **most empirically valuable part** of the 
-exchange: the **Actor** — the *observable result* of interpreting the signal.
 
 We now update the model to:
 
@@ -376,7 +372,7 @@ Where:
 
 ### 🧠 Interpretation as a Bridge
 
-The inclusion of Actor closes the loop in communication:
+The inclusion of Actor _closes the loop_ in communication:
 
 1. Symbol is transmitted
 2. Meaning is derived
@@ -384,31 +380,19 @@ The inclusion of Actor closes the loop in communication:
 
 This enables predictive modeling and reverse-inference (e.g., deducing probable meaning from action alone), making it a key construct in signal semiotics.
 
----
-
-### 🎯 Actor as Semantic Outcome
-
-We model Actor as a distribution over possible outcomes:
-
-$$
+>### 🎯 Actor as Semantic Outcome
+>We model Actor as a distribution over possible outcomes:
+>$$
 P(\text{Actor}_t | \text{Interpretation}_t, \text{Context}_t)
 $$
-
-This allows us to:
-
-* Simulate behavioral outcomes from perceived signals
-* Model ambiguity and action likelihoods
-* Analyze how species or systems prioritize actions given meaning
-
-In software terms, this can be logged via metadata fields in `SignalFrame` such as:
-
-* `actor_choice`
-* `outcome_probabilities`
-* `triggered_behavior`
+>This allows us to:
+>* Simulate behavioral outcomes from perceived signals
+>* Model ambiguity and action likelihoods
+>* Analyze how species or systems prioritize actions given meaning
 
 ---
 
-Let’s now define the components more precisely using symbol processing theory:
+Let’s now define the components more precisely using our model of symbol processing:
 
 $$
 \text{Actor}_t = \phi(\text{Interpretation}_t, \text{Context}_t)
@@ -429,7 +413,6 @@ Where:
 * $\psi$ resolves the **meaning from symbol + prior understanding**
 * $\phi$ maps **understood meaning** to an **actor/behavior**, within a context
 
-
 ## ✅ Mapping Metrics to the Equation
 
 In our refined model:
@@ -440,7 +423,6 @@ $$
 
 We can align the proposed metrics like this:
 
----
 #### 🧩 **$\text{Symbol}_t$** Instrumentation:
 
 * **Symbol Rate** (bits/sec): How quickly the system generates perceivable units.
@@ -448,8 +430,6 @@ We can align the proposed metrics like this:
 * **Bits per Symbol / Word Length**: Structure of symbolic composition.
 
 These define the **perceptual bandwidth** and **temporal throughput** of a language.
-
----
 
 #### 🧠 **$\text{Meaning}_t$** Instrumentation:
 
@@ -459,8 +439,6 @@ These define the **perceptual bandwidth** and **temporal throughput** of a langu
 * **MCR (Meaning Compression Ratio)**: Real semantic density.
 
 These represent the **expressive power** and **efficiency** of the language.
-
----
 
 #### 🎭 **$\text{Actor}_t$** and Contextual Interpretation:
 
@@ -521,6 +499,15 @@ These represent the **expressive power** and **efficiency** of the language.
 
 By observing enough signals, **we can reconstruct the grammar without ever being explicitly told the rules** — exactly 
 how infants, cryptanalysts, and ML models learn language.
+
+
+
+
+>In software terms, actor can be logged via metadata fields in `SignalFrame` such as:
+>* `actor_choice`
+>* `outcome_probabilities`
+>* `triggered_behavior`
+
 
 >The SignalFrame type would be be operationalized to allow Large Language Models to infer pattern and meaning via automated observation.
 
@@ -712,7 +699,7 @@ Historical context over time could be structured as a field inside metadata):
 
 Transposition: Moving from A to B
 
-- Changes from one frequency/frequeny range to another
+- Changes from one frequency/frequency range to another
 - Information ccannot exist before it exists. (feature=change)
 - implies change in 'rate'
 - Manipulation of sampling rate is the tool.
