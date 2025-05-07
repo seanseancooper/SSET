@@ -4,7 +4,7 @@
 
 This toolkit explores a foundational approach to interpreting electromagnetic (EM) emissions as a form of language.
 We frame signal analysis using two core concepts: **transposition** (the act of making signals perceptible) and
-**transformation** (the act of making 'symbols' intelligible).<H1><FONT COLOR='RED'>TO BE CLEAR, WE ARE AFTER THEY SYMBOL, NOT JUST THE SIGNAL.</FONT></H1>
+**transformation** (the act of making 'symbols' intelligible).<H1><FONT COLOR='RED'>TO BE CLEAR, WE ARE AFTER THE SYMBOL, NOT JUST THE SIGNAL.</FONT></H1>
 By treating EM emissions as communicative acts rather than just data or interference, we gain affordances in analysis,
 understanding, and potentially interaction. This approach draws from semiotics, signal processing, cognitive electronic
 warfare, and information theory.
