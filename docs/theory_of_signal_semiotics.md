@@ -36,7 +36,7 @@ Interpret EM fields as meaningful symbols:
 >2. Communications Theory
 >## Overview
 > Traditionally, signal analysis emphasizes decoding and classification. But if we take a step back, we see that every signal is a communicative act—embedded in a system of meaning.
-
+### **What is a Signal?**
 A theoretical signal can be decomposed into three layers:
 
 1. **Bias**: The structured, persistent signature or fingerprint of the emitter. This includes its choice of frequency, modulation, timing, and behavior. Bias encodes *intent*, *identity*, and *design constraints*. It is the emitter's grammar or dialect.
@@ -44,7 +44,7 @@ A theoretical signal can be decomposed into three layers:
 3. **Noise**: Traditionally viewed as meaningless, noise can still carry semantic weight—especially when analyzed ecologically. Noise may reflect interference, jamming, multipath effects, or even deception. In a semiotic context, noise may be unintentional expression, intentional obfuscation or ambient context.
 
 When we acknowledge EM emissions as language-like, we potentially gain new understanding about intention, what the signal is 'saying', and even why the signal is present.
-
+### **What is Language?**
 Building on communications theory, we model the classical communication triad composed os signal, meaning and actor:
 
 1. **Symbol** the transmitted signal containing information.
@@ -71,6 +71,14 @@ Processing the signal to move it from one range of the eelectromagnetic spectrun
    - related to frequency domain wrt. a having been the label A for some observable amount of time before being labeled B; a 're-labelling' operation that _may_ be sample rate driven.
    - think "A *", many consecutive "A" moving to "B".
 
+> Methods
+
+> Examples
+
+> In this model, does a signal need to be 'transposed' to be 'tranfsformed'?
+> > No. It's typically already done when you get it from a sensor. Also, as we will begin to understand later,
+> bugs don't transpose information, it's chemical and it 99x faster to understand.) 
+
 ### **Transformation**: Change from A -> B
 Processing the signal to modify it from one form into another.
    - Frequency domain function: function of acting on A, the result of processing A, Analysis of A
@@ -78,11 +86,9 @@ Processing the signal to modify it from one form into another.
    - Related to time domain wrt "being". Because ƒ exists and acts, it presumably "occurs" and produces "B", the result of the occurrence of ƒ. "ƒ is a functional operator acting on A, producing B as an analyzable outcome."
    - think "ƒ(A)"
 
-> In this model, does a signal need to be 'transposed' to be 'tranfsformed'?
-> > No. It's typically already done when you get it from a sensor. Also, as we will begin to understand later,
-> bugs don't transpose information, it's chemical and it 99x faster to understand.) 
+> Methods
 
-
+> Examples
 
 > What about modulation?
 > > Distinction from Modulation matters; Modulation does often include changes in frequency (e.g., FM), but what distinguishes modulation is the encoding of information through variation — of amplitude, phase, frequency, or another carrier property.
@@ -93,31 +99,25 @@ Processing the signal to modify it from one form into another.
 > > Sampling rate manipulation can be a mechanism for Transformation with side-effects and artifacts.
 
 
-
-
-
-
-
-
-
-
-
-
 ># Chapter 3: Exploiting the EM Field
->> 1. Electromagnetic Spectrum
-> "Humans can perceive a wide range of sounds, typically from 20 Hz to 20,000 Hz, and light wavelengths between 380 and 750 nanometers. This translates to an audible spectrum encompassing a wide range of pitches and a visual spectrum encompassing the colors we see." 
-> https://www.google.com/search?q=range+of+human+perception+vision%2C+hearing&oq=range+of+human+perception+vision%2C+hearing&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTE5MTkxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8
-> 
->> 3. "A radio wave is a form of light. This is an unusual thought for many people so we must again revisit the concept of the entire Electromagnetic Spectrum. In the entire spectrum, visible light is only a very small portion of the Electromagnetic Spectrum. X-Rays, for example, are also light but you cannot see them. The same can be said for Infrared light, which can only be detected using special equipment. So a radio wave is just another wave of light that cannot be seen by human eyes. But, they are all around us and they have many common properties with visible light. Radio waves travel at the same speed as light � approximately 186,000 miles per second." -- https://www.universalclass.com/articles/self-help/ham-radio-basics.htm
->>![EM_Spectrum_Properties_edit.svg.jpg](images/EM_Spectrum_Properties_edit.svg.jpg)
+>![EM_Spectrum_Properties_edit.svg.jpg](images/EM_Spectrum_Properties_edit.svg.jpg)
 
-Discuss Propagation
+> "A radio wave is a form of light. This is an unusual thought for many people so we must again revisit the concept of the entire Electromagnetic Spectrum. In the entire spectrum, visible light is only a very small portion of the Electromagnetic Spectrum. X-Rays, for example, are also light but you cannot see them. The same can be said for Infrared light, which can only be detected using special equipment. So a radio wave is just another wave of light that cannot be seen by human eyes. But, they are all around us and they have many common properties with visible light. Radio waves travel at the same speed as light � approximately 186,000 miles per second." -- https://www.universalclass.com/articles/self-help/ham-radio-basics.htm
 
 
+Goal: Get symbols.
 
+>### **Transposition**:
+>> Methods
+>
+>> Examples
+>
 
-
-
+>### **Transformation**:
+>> Methods
+>
+>> Examples
+>
 
 ># Chapter 4: Signal as Function — Symbols, Meaning, and Actors
 > ![semiotic.jpg](images/semiotic.jpg)
@@ -129,6 +129,7 @@ Discuss Propagation
 >## Overview
 > Fill me in. 
 
+## Comms Theory
 Communications theory defines three major 'roles' in the communication process; a 'symbol', a 'meaning', and an 'actor':
  - '**symbol**': a uniquly recognized, conccensus-driven _pattern_ conveying information. 
  - '**meaning**': an _understanding_ of the symbol as conveyed to the recipient.
@@ -137,7 +138,7 @@ Communications theory defines three major 'roles' in the communication process; 
 A **'Symbol'** can be defined as a 'structured pattern within a signal'. It posesses a unique form that distinguishes 
 it from all other symbols. It is influenced by and is contained in a signal composed of 'bias', 'variance', and 'noise'.
 
-[Bias, Variance and Noise Decomposition discussion]
+
 
 **'Meaning'** is that which endows a symbol with information to a recipient. In this proposed model of language, 
 understanding is driven by concensus, agreement and convention. For instance, consider any commonly understood 'label' 
@@ -167,7 +168,7 @@ typically used to establish connections between ideas.
 In this framework, symbols are the atomic units, while words are composite structures used for higher-order contextual 
 communication.
 
-># Toward a Semiotic Language Model
+># Chapter 5: Toward a Semiotic Language Model
 >## Overview
 >This chapter explores how perceptual constraints in other taxa may have shaped their 'language' systems, focusing on the 
 > capacity to distinguish and utilize symbols. We examine the relationship between sensory bandwidth, symbol resolution, 
@@ -176,6 +177,7 @@ communication.
 > for our focus -- artificial systems.
 
 ### Perceptual Constraints and Symbol Resolution
+Organisms differ. Disregarding the issue of langauge in the species in question, assertions can be made wrt their _ability_ to perceive and resolve symbols. Using these assertions and communications theory, this model proposes a systems and method by which languages can be reverse-engineered based on utilization patterns. 
 
 Organisms differ in their ability to perceive and resolve symbols due to variations in:
 
@@ -203,8 +205,20 @@ Where:
 
 For example **Humans** possess moderate `S`, high `B`, high `R`, and high `C`
 
-This model can be used to predict or constrain the form and limits of symbolic systems across domains. As a 'thought 
-experiment' let's review this design in the comparative context of common organisms AND a hypothetical Large Language 
+This model can be used to predict or constrain the form and limits of symbolic systems across domains. 
+
+$$
+\text{Signal} = f(\text{Symbol}, \text{Meaning})
+$$
+
+
+
+
+
+
+
+
+As a 'thought experiment' let's review this design in the comparative context of common organisms AND a hypothetical Large Language 
 Model. We'll start with the animals.
 
 ### Species Comparison
@@ -221,7 +235,7 @@ at 4x humans.
 
 These are grouped acccording to their hierarchy in the communications model as discussed above.
 
-#### SYMBOL – Perception of Symbols
+#### SYMBOL – Perception of Symbols (sources)
 
 | Metric                    | HUMAN         | Felidae       | Canidae       | Aves          | Insecta      | Olfactores    | Machina   |
 | ------------------------- | ------------- | ------------- | ------------- | ------------- | ------------ | ------------- | --------- |
@@ -231,8 +245,29 @@ These are grouped acccording to their hierarchy in the communications model as d
 | Field of View (°)         | \~210°        | \~200°        | \~250°        | \~300°        | \~360°       | \~270°        | 360° sim. |
 | Symbol Discern Rate (WPM) | \~250 WPM     | \~50 est.     | \~70 est.     | \~500 est.    | \~900 est.   | \~40 est.     | >10⁶ est. |
 
+>### 📊 Symbol Capability Vector: Statistical Decomposition
+>
+>To model symbol recognition and processing:
+>
+>$$
+\vec{S}_{\text{species}} = \begin{bmatrix}
+\text{Perceptual Rate (Hz)} \\
+\text{Vision Bandwidth (Hz)} \\
+\text{Auditory Bandwidth (Hz)} \\
+\text{Field of View (deg)} \\
+\text{Perceptual Resolution (symbols/sec)}
+\end{bmatrix}
+$$
+>
+>From this we derive a species-specific **Symbol Capacity Function**:
+>
+>$$
+C_s(\vec{S}) = \alpha_1 \cdot \text{Perceptual Rate} + \alpha_2 \cdot \log(\text{Vision BW}) + \alpha_3 \cdot \log(\text{Auditory BW}) + \alpha_4 \cdot \text{FOV} + \alpha_5 \cdot \text{Resolution}
+$$
+>
+>This provides an upper bound on the rate and complexity of symbols a species can process.
 
-#### MEANING – Symbolic Context, Compression, Distribution
+#### MEANING – Symbolic Context, Compression, Distribution (sources)
 
 | Metric                    | HUMAN        | Felidae        | Canidae        | Aves          | Insecta     | Olfactores     | Machina       |
 | ------------------------- | ------------ | -------------- | -------------- | ------------- | ----------- | -------------- | ------------- |
@@ -242,40 +277,33 @@ These are grouped acccording to their hierarchy in the communications model as d
 | Longest Symbol            | \~45 chars   | growl          | howl           | song-seq.     | scent chain | complex call   | infinite      |
 | Most Frequent Symbol      | articles     | alarm          | bark           | tweet         | trail mark  | social ping    | tokens        |
 
+>#### Language Compression as an Evolutionary Strategy?
+>
+>Momentairily side-stepping the missing 'actor' category, if we were to consider each taxa a System using a Lanuage, then these Systems economize:
+>* **Symbol use**: fewer, multi-functional symbols
+>* **Repetition**: frequent reuse of core symbols
+>* **Contextual layering**: multiple meanings encoded into symbol variation (tone, repetition, pattern)
+>### 🔁 Meaning Compression Ratio
+>To compress conceptual space into symbolic channels, we define:
+>$$
+MCR = \frac{|\text{Contextual Actions}|}{|\text{Available Symbols}|}
+>$$
+>* High $MCR$: Dense communication (e.g., bird alarm calls)
+>* Low $MCR$: Redundant, expansive communication (e.g., human speech)
+
 ---
 
 #### Notes:
 
-* **Machina** represents artificial systems with theoretically unlimited symbol rates and structural representations (vectors, matrices, codepoints).
-* **Symbol Discern Rate** is analogous to WPM but scaled for species’ perceptual speed and bandwidth.
-* “Distinct Symbol Types” reflects lexical diversity—though approximate, it suggests range and complexity.
-* Aves show high perceptual speed with lower bandwidth, implying higher symbol compression and repetition (e.g., bird songs).
-* Insecta rely more on pheromonal or vibration-based symbols (slow bandwidth, but high clarity).
-* Humans show complex symbol combinations (words) and large corpus size due to rich sensory resolution.
+>* **Machina** represents artificial systems with theoretically unlimited symbol rates and structural representations (vectors, matrices, codepoints).
+>* **Symbol Discern Rate** is analogous to WPM but scaled for species’ perceptual speed and bandwidth.
+>* “Distinct Symbol Types” reflects lexical diversity—though approximate, it suggests range and complexity.
+>* Aves show high perceptual speed with lower bandwidth, implying higher symbol compression and repetition (e.g., bird songs).
+>* Insecta rely more on pheromonal or vibration-based symbols (slow bandwidth, but high clarity).
+>* Humans show complex symbol combinations (words) and large corpus size due to rich sensory resolution.
+>
 
-## Language Compression as an Evolutionary Strategy
-
-Momentairily side-stepping the missing 'actor' category, if we were to consider each taxa a System, then 
-Systems economize:
-
-* **Symbol use**: fewer, multi-functional symbols
-* **Repetition**: frequent reuse of core symbols
-* **Contextual layering**: multiple meanings encoded into symbol variation (tone, repetition, pattern)
-
-In the proposed model, this is not a limitation—it is a strategic language compression occuring organically under the 
-constraint of limited perception. Symbolic efficiency maximizes transmission under real-world biological constraints.
-
-># Implications for Signal Semiotics
-
-Understanding the biological foundations of perception and symbolic resolution helps us:
-
-* Understand that language must be compatible with sensory constraints.
-* Interpret language in cognitive terms
-* Build or understand synthetic languages or translation systems.
-
-The broader implication is that **meaning and language are abstract universals, grounded in perceptual embodiment and ecological necessity**.
-
-This understanding is core to advancing the 'Signal Semiotics' framework into a predictive, designable system of symbolic representation.
+---
 
 ### 📊 Mapping Against the Semiotic Table
 
@@ -289,6 +317,18 @@ This understanding is core to advancing the 'Signal Semiotics' framework into a 
 | Olfactores | \~70       | Scent-based           | Scent-based            | ?                 | ?                | \~50–100            | scent blends | base scent    | alert pheromone    | Narrow         |
 | Machina    | 10–1000+   | all EM                | all EM                 | 360               | >10,000 WPM      | ∞ (byte-wise)       | unbounded    | 1-bit         | protocol sync byte | Fully Flexible |
 
+### Implications for Signal Semiotics
+
+Understanding the biological foundations of perception and symbolic resolution helps us:
+
+* Understand that language must be compatible with sensory constraints.
+* Interpret language in cognitive terms
+* Build or understand synthetic languages or translation systems.
+
+The broader implication is that **meaning and language are abstract universals, grounded in perceptual embodiment and ecological necessity**.
+
+This understanding is core to advancing the 'Signal Semiotics' framework into a predictive, designable system of symbolic representation.
+
 ---
 >>This framing also aligns closely with `SignalFrame`, where metadata fields may be used to capture actor outcomes:
 >>* `action_triggered`
@@ -298,7 +338,7 @@ This understanding is core to advancing the 'Signal Semiotics' framework into a 
 >In artificial systems, we can observe the *full arc* from reception → understanding → result, enabling 
 reverse-inference of meaning by analyzing outcomes.
 
-# 🧮 Refined Mathematical Model of Symbolic Communication
+# 🧮 A Refined Mathematical Model of Symbolic Communication
 
 The **Actor** is crucial to understanding not only whether a symbol was understood, but *how it was used*. It completes 
 the communication loop. This allows us to model Internal processes (decoding symbols) and External consequences 
@@ -334,63 +374,15 @@ Where:
 * $\text{Meaning}_t$: The internalized representation or semantic interpretation (which may be shared, ambiguous, or individual)
 * $\text{Actor}_t$: The observable or latent action (choice, behavior, state change) caused by the comprehension of the symbol
 
-Let’s now define the components more precisely using symbol processing theory:
+### 🧠 Interpretation as a Bridge
 
-$$
-\text{Actor}_t = \phi(\text{Interpretation}_t, \text{Context}_t)
-$$
+The inclusion of Actor closes the loop in communication:
 
-$$
-\text{Interpretation}_t = \psi(\text{Symbol}_t, \text{Meaning}_t)
-$$
+1. Symbol is transmitted
+2. Meaning is derived
+3. Actor selects or generates an action
 
-Thus the full model becomes:
-
-$$
-\text{Signal}_t = f\left(\text{Symbol}_t, \text{Meaning}_t, \phi\left(\psi(\text{Symbol}_t, \text{Meaning}_t), \text{Context}_t\right)\right)
-$$
-
-Where:
-
-* $\psi$ resolves the **meaning from symbol + prior understanding**
-* $\phi$ maps **understood meaning** to an **actor/behavior**, within a context
-
----
-
-### 📊 Symbol Capability Vector: Statistical Decomposition
-
-To model symbol recognition and processing:
-
-$$
-\vec{S}_{\text{species}} = \begin{bmatrix}
-\text{Perceptual Rate (Hz)} \\
-\text{Vision Bandwidth (Hz)} \\
-\text{Auditory Bandwidth (Hz)} \\
-\text{Field of View (deg)} \\
-\text{Perceptual Resolution (symbols/sec)}
-\end{bmatrix}
-$$
-
-From this we derive a species-specific **Symbol Capacity Function**:
-
-$$
-C_s(\vec{S}) = \alpha_1 \cdot \text{Perceptual Rate} + \alpha_2 \cdot \log(\text{Vision BW}) + \alpha_3 \cdot \log(\text{Auditory BW}) + \alpha_4 \cdot \text{FOV} + \alpha_5 \cdot \text{Resolution}
-$$
-
-This provides an upper bound on the rate and complexity of symbols a species can process.
-
----
-
-### 🔁 Meaning Compression Ratio
-
-To compress conceptual space into symbolic channels, we define:
-
-$$
-MCR = \frac{|\text{Contextual Actions}|}{|\text{Available Symbols}|}
-$$
-
-* High $MCR$: Dense communication (e.g., bird alarm calls)
-* Low $MCR$: Redundant, expansive communication (e.g., human speech)
+This enables predictive modeling and reverse-inference (e.g., deducing probable meaning from action alone), making it a key construct in signal semiotics.
 
 ---
 
@@ -416,19 +408,29 @@ In software terms, this can be logged via metadata fields in `SignalFrame` such 
 
 ---
 
-### 🧠 Interpretation as a Bridge
+Let’s now define the components more precisely using symbol processing theory:
 
-The inclusion of Actor closes the loop in communication:
+$$
+\text{Actor}_t = \phi(\text{Interpretation}_t, \text{Context}_t)
+$$
 
-1. Symbol is transmitted
-2. Meaning is derived
-3. Actor selects or generates an action
+$$
+\text{Interpretation}_t = \psi(\text{Symbol}_t, \text{Meaning}_t)
+$$
 
-This enables predictive modeling and reverse-inference (e.g., deducing probable meaning from action alone), making it a key construct in signal semiotics.
+Thus the full model becomes:
 
----
+$$
+\text{Signal}_t = f\left(\text{Symbol}_t, \text{Meaning}_t, \phi\left(\psi(\text{Symbol}_t, \text{Meaning}_t), \text{Context}_t\right)\right)
+$$
 
-### ✅ Mapping Metrics to the Equation
+Where:
+
+* $\psi$ resolves the **meaning from symbol + prior understanding**
+* $\phi$ maps **understood meaning** to an **actor/behavior**, within a context
+
+
+## ✅ Mapping Metrics to the Equation
 
 In our refined model:
 
@@ -439,7 +441,7 @@ $$
 We can align the proposed metrics like this:
 
 ---
-#### 🧩 **Symbol\_t** Instrumentation:
+#### 🧩 **$\text{Symbol}_t$** Instrumentation:
 
 * **Symbol Rate** (bits/sec): How quickly the system generates perceivable units.
 * **Word Rate** (words/sec): Aggregate symbolic expression per time unit.
@@ -449,7 +451,7 @@ These define the **perceptual bandwidth** and **temporal throughput** of a langu
 
 ---
 
-#### 🧠 **Meaning\_t** Instrumentation:
+#### 🧠 **$\text{Meaning}_t$** Instrumentation:
 
 * **Symbol Space (2^N)**: Possible atomic units available.
 * **Word Space**: Total possible arrangements (e.g., $2^{11} = 2048$ words).
@@ -460,7 +462,7 @@ These represent the **expressive power** and **efficiency** of the language.
 
 ---
 
-#### 🎭 **Actor\_t** and Contextual Interpretation:
+#### 🎭 **$\text{Actor}_t$** and Contextual Interpretation:
 
 * **Semantic Outcome Complexity (SOC)**: How many **distinct behaviors** or choices result from meanings.
 * **Context Modifiers**: Modulate or multiply Actor choices.
@@ -507,7 +509,7 @@ These represent the **expressive power** and **efficiency** of the language.
 
 
 
-# Tools for Signal Semiotics
+># Chapter 7: Tools for Signal Semiotics
 ### 🧪 Signal Semiotics as Decomposition
 
 *Language Decomposition via Distribution* is the core of **Signal Semiotics**. What SSET can do is:
@@ -517,7 +519,7 @@ These represent the **expressive power** and **efficiency** of the language.
 * **Infer semantic roles** from behavioral consequences
 * **Detect latent grammars** via sequence analysis
 
-By observing enough signals, **we reconstruct the grammar** without ever being explicitly told the rules — exactly 
+By observing enough signals, **we can reconstruct the grammar without ever being explicitly told the rules** — exactly 
 how infants, cryptanalysts, and ML models learn language.
 
 >The SignalFrame type would be be operationalized to allow Large Language Models to infer pattern and meaning via automated observation.
