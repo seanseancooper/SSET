@@ -42,7 +42,9 @@ class Emitter:
         self.known_bias = known_bias
 
     def __eq__(self, other):
-        return (self.id == other.id) and (self.platform_type == other.platform_type)
+        return ((self.id == other.id) and
+                (self.platform_type == other.platform_type)
+        )
 
 
 class EMField:
