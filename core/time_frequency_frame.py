@@ -2,11 +2,10 @@
 #
 #  This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 #
-
-### signal_semiotics_toolkit/core/time_frequency_frame.py
+# signal_semiotics_toolkit/core/time_frequency_frame.py
 
 import numpy as np
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 
 
 class TimeFrequencyFrame:
@@ -33,6 +32,7 @@ class TimeFrequencyFrame:
         return self.start_time
 
     def get_duration(self) -> float:
+        # calculate and set this from self.timestamp
         return self.duration
 
     def set_freq_min(self, freq_min: float):
@@ -124,3 +124,18 @@ class TimeFrequencyFrame:
     def energy(self) -> float:
         """Calculate total energy across the frame."""
         return np.sum(np.abs(self.tf_matrix)**2)
+
+    def __lt__(self, other):
+        return self.start_time < other.start_time
+
+
+class TimeFrequencyFrameList:
+
+    def __init__(self, frames: List[TimeFrequencyFrame]):
+        self.frames = frames
+
+    def select_range(self, start: float, end: float) -> List[TimeFrequencyFrame]:
+        return [f for f in self.frames if start <= f.start_time <= end]
+
+    def filter_by_time_range(self, start: float, end: float) -> List[TimeFrequencyFrame]:
+        return [f for f in self.frames if start <= f.start_time <= end]

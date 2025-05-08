@@ -2,11 +2,12 @@
 #
 #  This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 #
+# signal_semiotics_toolkit/core/signal_model.py
 
 import numpy as np
 from scipy.signal import get_window
+from typing import Optional, Dict, Any, List
 
-from typing import Optional, Dict, Any
 
 class SignalFrame:
     def __init__(
@@ -49,7 +50,7 @@ class SignalFrame:
         return self.timestamp
 
     def get_duration(self) -> float:
-        # calculate this from self.data
+        # calculate and set this from self.timestamp
         return self.duration
 
     def get_carrier_freq(self) -> float:
@@ -125,3 +126,30 @@ class SignalFrame:
             domain="time",
             metadata=self.metadata
         ), (self.magnitude, self.phase)
+
+    def __lt__(self, other):
+        return self.timestamp < other.timestamp
+
+    def __eq__(self, other):
+        return (
+                isinstance(other, SignalFrame)
+                and self.timestamp == other.timestamp
+                and self.domain == other.domain
+                # and self.location == other.location
+        )
+
+
+class SignalFrameArray:
+
+    def __init__(self, frames: List[SignalFrame]):
+        self.frames = frames
+
+    # query helpers
+    def select_range(self, start: float, end: float) -> List[SignalFrame]:
+        return [f for f in self.frames if start <= f.timestamp <= end]
+
+    def filter_by_time_range(self, start: float, end: float) -> List[SignalFrame]:
+        return [f for f in self.frames if start <= f.timestamp <= end]
+
+
+
