@@ -128,14 +128,3 @@ class TimeFrequencyFrame:
     def __lt__(self, other):
         return self.start_time < other.start_time
 
-
-class TimeFrequencyFrameList:
-
-    def __init__(self, frames: List[TimeFrequencyFrame]):
-        self.frames = frames
-
-    def select_range(self, start: float, end: float) -> List[TimeFrequencyFrame]:
-        return [f for f in self.frames if start <= f.start_time <= end]
-
-    def filter_by_time_range(self, start: float, end: float) -> List[TimeFrequencyFrame]:
-        return [f for f in self.frames if start <= f.start_time <= end]

@@ -45,22 +45,6 @@ class Emitter:
         return (self.id == other.id) and (self.platform_type == other.platform_type)
 
 
-class EmitterGroup:
-
-    def __init__(self, emitters: Dict[str, Emitter]):
-        self.emitters = emitters
-
-    # Lookup by ID
-    def get_emitter(self, _id):
-        return self.emitters[_id]
-
-    # Grouping by platform_type
-    def get_emitters_by_platform(self, _platform):
-        return [self.emitters[id] for id in self.emitters if self.emitters[id].platform_type is _platform]
-
-    # Bias comparison or merge
-
-
 class EMField:
 
     def __init__(
@@ -103,14 +87,6 @@ class EMField:
                 self.location == other.location and
                 self.domain == other.domain)
 
-
-class EMFieldArray:
-
-    def __init__(self, fields: List[EMField]):
-        self.fields = fields
-
-    def filter_by_time_range(self, start: float, end: float) -> List[EMField]:
-        return [f for f in self.fields if start <= f.timestamp <= end]
 
 
 class SignalEvent(EMField):
@@ -170,20 +146,6 @@ class SignalEvent(EMField):
         )
 
 
-class SignalEventList:
-
-    def __init__(self, events: List[SignalEvent]):
-        self.events = events
-        self.carrier_freq = events
-
-    def filter_by_time(self, start: float, end: float) -> List[SignalEvent]:
-        return [e for e in self.events if start <= e.timestamp <= end]
-
-    def __eq__(self, other):
-        return (super().__eq__(other) and
-                self.carrier_freq == other.carrier_freq)
-
-
 class SignalMessage(SignalEvent):
     def __init__(
         self,
@@ -226,13 +188,4 @@ class SignalMessage(SignalEvent):
             and super().__eq__(other)
             and self.semantics == other.semantics
         )
-
-
-class SignalMessageList:
-
-    def __init__(self, frames: List[SignalMessage]):
-        self.frames = frames
-
-    def filter_by_time_range(self, start: float, end: float) -> List[SignalMessage]:
-        return [f for f in self.frames if start <= f.timestamp <= end]
 

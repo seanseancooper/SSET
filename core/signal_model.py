@@ -139,17 +139,4 @@ class SignalFrame:
         )
 
 
-class SignalFrameArray:
-
-    def __init__(self, frames: List[SignalFrame]):
-        self.frames = frames
-
-    # query helpers
-    def select_range(self, start: float, end: float) -> List[SignalFrame]:
-        return [f for f in self.frames if start <= f.timestamp <= end]
-
-    def filter_by_time_range(self, start: float, end: float) -> List[SignalFrame]:
-        return [f for f in self.frames if start <= f.timestamp <= end]
-
-
 
