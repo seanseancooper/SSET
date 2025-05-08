@@ -12,13 +12,10 @@ from typing import Optional, Dict, Any, List
 class SignalFrame:
     """
     Transposition:
-    A SignalFrame captures a representation of the signal as data.
+    A SignalFrame captures a representation of the signal as n-dimensional data.
     SignalFrame can be mutated to either the time or frequency domain, returning a new SignalFrame in the apropos
     domain with magnitude & phase.
     """
-
-    # add methods for metadata i/o
-
     def __init__(
         self,
         timestamp: float,
@@ -26,6 +23,7 @@ class SignalFrame:
         carrier_freq: float,
         bandwidth: float,
         data: np.ndarray,
+        # why does this not have a sample rate as a top level field
         domain: str = "time",
         metadata: Optional[Dict[str, Any]] = None
     ):
@@ -84,10 +82,10 @@ class SignalFrame:
     def set_metadata(self, metadata: Optional[Dict[str, Any]]):
         self.metadata = metadata
 
-    def get_metadata_value(self, meta_key: str):
+    def get_metadata_value_by_key(self, meta_key: str):
         return self.metadata[meta_key]
 
-    def set_metadata_key(self, meta_key: str, meta_val):
+    def set_metadata_value_by_key(self, meta_key: str, meta_val):
         self.metadata[meta_key] = meta_val
 
     def get_phase(self) -> float:

@@ -11,13 +11,11 @@ from typing import Optional, Dict, Any, List
 class TimeFrequencyFrame:
     """
     Transformation:
-    A TimeFrequencyFrame captures temporal and spectral features for a slice of of spectrum bounded by frequency range.
-    The range can be further sliced along a either the 'time' or 'frequency' axis into a new TimeFrequencyFrame (in
-    either domain). TimeFrequencyFrame can calculate total energy across the frame using energy(), or be plotted using
-    the plot() method.
+    A TimeFrequencyFrame captures temporal and spectral features for a slice of of spectrum bounded by frequency range
+    as a 2 dimensional array of time (rows) and frequency (cols). This can be used to extract a 'feature' along an axis
+    and contextualize it in either domain as a new TimeFrequencyFrame. TimeFrequencyFrame can calculate total energy
+    across the frame using energy(), or plot the frame using the plot() method.
     """
-
-    # add methods for metadata i/o
     def __init__(self,
                  start_time: float,
                  duration: float,
@@ -60,10 +58,10 @@ class TimeFrequencyFrame:
     def get_metadata(self) -> Optional[Dict[str, Any]]:
         return self.metadata
 
-    def get_metadata_value(self, meta_key: str):
+    def get_metadata_value_by_key(self, meta_key: str):
         return self.metadata[meta_key]
 
-    def set_metadata_key(self, meta_key: str, meta_val):
+    def set_metadata_value_by_key(self, meta_key: str, meta_val):
         self.metadata[meta_key] = meta_val
 
     def get_time_axis(self) -> np.ndarray:

@@ -42,10 +42,10 @@ class Emitter:
     def set_known_bias(self, known_bias: Optional[Dict[str, Any]]):
         self.known_bias = known_bias
 
-    def get_known_bias_value(self, meta_key: str):
+    def get_known_bias_by_key(self, meta_key: str):
         return self.known_bias[meta_key]
 
-    def set_known_bias_key(self, meta_key: str, meta_val):
+    def set_known_bias_by_key(self, meta_key: str, meta_val):
         self.known_bias[meta_key] = meta_val
 
     def __eq__(self, other):
@@ -93,10 +93,10 @@ class EMField:
     def set_metadata(self, metadata: Optional[Dict[str, Any]]):
         self.metadata = metadata
 
-    def get_metadata_value(self, meta_key: str):
+    def get_metadata_value_by_key(self, meta_key: str):
         return self.metadata[meta_key]
 
-    def set_metadata_key(self, meta_key: str, meta_val):
+    def set_metadata_value_by_key(self, meta_key: str, meta_val):
         self.metadata[meta_key] = meta_val
 
     def __eq__(self, other):
