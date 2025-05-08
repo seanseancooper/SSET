@@ -61,8 +61,14 @@ This toolkit intends to instrument the classical model in a manner that builds a
 > frequency domain domain, as well as the side-effects of manipulation in either. 
 > 
 
-### **Transposition**: Move from A -> B 
-Processing the signal to move it from one range of the eelectromagnetic spectrun into another range (visible or audible) for consumption. 
+### **Transposition**: Making the Invisible Audible / Visible 
+Given a representation of energy on the electromagnetic spectrum, any processing to logistically move that energy from 
+one range into another **visible or audible range for consumption** counts as 'Transposition'. The operative phrase is 
+'visible or audible range for consumption'; to be explicit, we are concerned with the communication value derived from 
+the symbol contained in the signal. In this model the symbol must be percievable to the actor to be cconsumed.
+
+
+
    - Visualization.
    - Sonification.
    - time-domain function: 'manipulation of A', 'A x many times', 'timing' or 'timestamp'..
@@ -74,24 +80,33 @@ Processing the signal to move it from one range of the eelectromagnetic spectrun
 
 > Examples
 
-> In this model, does a signal need to be 'transposed' to be 'tranfsformed'?
-> > No. It's typically already done when you get it from a sensor. Also, as we will begin to understand later,
-> bugs don't transpose information, it's chemical and it 99x faster to understand.) 
+> What about modulation?
+> > Distinction from Modulation matters; Modulation does often include changes in frequency (e.g., FM), but what distinguishes modulation is the encoding of information through variation — of amplitude, phase, frequency, or another carrier property.
+> Modulation can be a mechanism of Transposition, but not all transpositions are modulations (frequency-domain).
 
-### **Transformation**: Change from A -> B
-Processing the signal to modify it from one form into another.
+> In this model, does a signal need to be 'transposed' to be 'transformed'?
+> > No. It's typically already done by the time you get it from a 'sensor'.
+
+### **Transformation**: Understanding the Symbol in the Signal
+Any processing of the signal to mutate it across domains. De/Modulation, de/encoding, de/encryping, translation, DAC, 
+ADC,  
+
+In a perfect world, a unique electomagnetic 'signature' of a signal could be tokenized to be a unique representation 
+of a symbol. Setting aside the issue of decomposition, the signal exists in the time and frequency domains 
+simultaineously. In this model, we attempt to instrument the electromagnetic energy as an abstraction based on it's 
+unique features. The purpose of the abstraction is to provide affordance and facility moving energy reepresentations 
+and features across domains during a subsequent tokenization and encoding proccess.
+
    - Frequency domain function: function of acting on A, the result of processing A, Analysis of A
    - Transformation occuring over time is considered 'modulation'.
-   - Related to time domain wrt "being". Because ƒ exists and acts, it presumably "occurs" and produces "B", the result of the occurrence of ƒ. "ƒ is a functional operator acting on A, producing B as an analyzable outcome."
+   - Related to time-domain wrt "being". Because a function ƒ() exists and presumably acts, it "occurs" and produced "B", the result of the occurrence of the function ƒ. 
+   - you could think: "ƒ is a functional operator acting on A, producing B as an observable outcome."
    - think "ƒ(A)"
 
 > Methods
 
 > Examples
 
-> What about modulation?
-> > Distinction from Modulation matters; Modulation does often include changes in frequency (e.g., FM), but what distinguishes modulation is the encoding of information through variation — of amplitude, phase, frequency, or another carrier property.
-> Modulation can be a mechanism of Transposition, but not all transpositions are modulations (frequency-domain).
 
 
 > What about sampling rates?
@@ -208,25 +223,42 @@ $$
 \text{Signal} = f(\text{Symbol}, \text{Meaning})
 $$
 
-
 As a 'thought experiment' let's review this design in the comparative context of common organisms AND a hypothetical 
 Large Language Model. We'll start with the animals.
 
 ### Species Comparison
 
-A structured table was developed to compare perception-based symbol use across species (Homo Sapiens, Felidae, 
-Canidae, Aves, Insecta, Olfactores, and Machina (AI). Metrics included perceptual speed, sensory bandwidth, visual 
-field, symbolic resolution, and extrapolated linguistic structure.
+A structured table was developed to compare proposed perception-based symbol use across species (Homo Sapiens, Felidae, 
+Canidae, Aves, Insecta, Olfactores, and Machina (AI) based on perceptive ability. Metrics included perceptual speed, 
+sensory bandwidth, visual field. 
 
-The key insight: Assuming the species has a language, the **species likely adapted their symbolic systems to fit within 
-the constraints of their sensory modalities and ecological context**. Birds, for example, may use rapid symbol 
-perception abilities (2x Humans) to enable complex calls, even with a narrower auditory bandwidth. Insects may 
-rely more heavily on chemical signals due to low visual or auditory bandwidth, though speed of perception is estiamted 
-at 4x humans.
+In this model, we assume each class has the capability for symbolic resolution, and based on this magical ability
+extrapolated linguistic structure. Humans, being the known, act as the 'control'.
 
-These are grouped acccording to their hierarchy in the communications model as discussed above.
+We compare perceptive abilities across the classes; the model assumes that the species uses it's entire range of 
+preceptive abilities to perceive symbols in the classes theoretical language.
 
-#### SYMBOL – Perception of Symbols (sources)
+The key insight of the comparison: Assuming the species has a language, the **species likely adapted their symbolic 
+systems to fit within the constraints of their sensory modalities to perceivve them, and their ecological context to 
+use them**. 
+
+In this model, Birds, for example, use rapid symbol perception abilities (2x Humans) to enable complex calls (a higher 
+baud rate, so to speak), even though they posess a comparatively narrow auditory bandwidth. 
+
+In this model, insects do not need to 'transpose' information at all; Instead they use chemicals to communicate 
+at higher perception speed than humans, albeit with a compression linguistic corpus designed for mass communication. 
+Consider the information _encoded_ in a smell: 'Food is here' vs. 'Food was here x hours ago', or even 'what kind of 
+food'.
+
+* Birds show high perceptual speed with lower bandwidth, implying high symbol compression and repetition (e.g., bird 
+* 'songs').
+* Insects rely on pheromonal or vibration-based symbols (slow bandwidth, but high clarity).
+* Humans show complex symbol combinations (words) and large corpus size due to rich sensory resolution.
+* AI represents artificial systems with theoretically unlimited symbol rates and structural representations (vectors, matrices, codepoints).
+
+The classes grouped acccording hierarchy in the communications model.
+
+#### SYMBOL – Perception of Symbol (sources)
 
 | Metric                    | HUMAN         | Felidae       | Canidae       | Aves          | Insecta      | Olfactores    | Machina   |
 | ------------------------- | ------------- | ------------- | ------------- | ------------- | ------------ | ------------- | --------- |
@@ -235,6 +267,7 @@ These are grouped acccording to their hierarchy in the communications model as d
 | Hearing Bandwidth (Hz)    | 20–20k Hz     | 55–77k Hz     | 40–60k Hz     | 1–4k Hz       | Vib: 10–1kHz | 40–20k Hz     | 1–1M+ Hz  |
 | Field of View (°)         | \~210°        | \~200°        | \~250°        | \~300°        | \~360°       | \~270°        | 360° sim. |
 | Symbol Discern Rate (WPM) | \~250 WPM     | \~50 est.     | \~70 est.     | \~500 est.    | \~900 est.   | \~40 est.     | >10⁶ est. |
+
 
 >### 📊 Symbol Capability Vector: Statistical Decomposition
 >
@@ -269,13 +302,8 @@ $$
 | Most Frequent Symbol      | articles     | alarm          | bark           | tweet         | trail mark  | social ping    | tokens        |
 
 #### Notes:
-* **Machina** represents artificial systems with theoretically unlimited symbol rates and structural representations 
-* (vectors, matrices, codepoints).
 * **Symbol Discern Rate** is analogous to WPM but scaled for species’ perceptual speed and bandwidth.
 * “Distinct Symbol Types” reflects lexical diversity—though approximate, it suggests range and complexity.
-* Aves show high perceptual speed with lower bandwidth, implying higher symbol compression and repetition (e.g., bird songs).
-* Insecta rely more on pheromonal or vibration-based symbols (slow bandwidth, but high clarity).
-* Humans show complex symbol combinations (words) and large corpus size due to rich sensory resolution.
 
 ---
 
@@ -450,6 +478,117 @@ These represent the **expressive power** and **efficiency** of the language.
 
 
 
+---
+># 🧮 Chapter 6: Modeling a Machine Language
+>### Overview
+> In this though experiment, we come to undertstand the dynamiccs of a language using a 
+> theoretical 11-bit machine language:
+
+Say we had a machine language composed of 11 bits.
+Each bit is a symbol; 11 bits make a word.
+I believe that the total possible number of unique words is 11bits squared.
+The language has 11 bits wide, how fast are 11 bit words being made?
+10 words per second is different that 10000 words per second; this is bandwidth.
+
+With enough samples of words and bits, we could make out a language based on the distribution of words and usages.
+
+---
+
+You're absolutely on target — machine languages, especially binary protocols, are well-suited for this type of symbolic analysis because they are deterministic, bounded, and clocked. Let's break it down rigorously and formalize your thoughts.
+
+---
+
+### 🧮 Formal Machine Language Model
+
+Assume a machine language where:
+
+* Each **symbol** is a **bit**
+* Each **word** is composed of 11 symbols → 11 bits
+* The **word rate** = $r$ words/second
+* The **symbol rate** = $s = 11 \times r$ bits/second
+* The **total symbol space** = $2^1 = 2$ (binary)
+* The **word space** (unique combinations) = $2^{11} = 2048$
+
+If the machine transmits 10,000 words per second:
+
+* Bandwidth: $s = 11 \times 10,000 = 110,000$ bps
+
+---
+
+### 🔢 Defining Key Metrics for This Machine Language
+
+#### 1. **Symbol Capability Vector (SCV)**
+
+Defined as:
+
+$$
+\text{SCV} = \frac{\text{Symbol Rate} \times \text{Bits per Symbol}}{\text{Max Human WPM} \times \text{Avg Symbol Entropy}}
+$$
+
+This normalizes machine capacity relative to human perceptual throughput:
+
+$$
+\text{SCV}_{\text{machine}} = \frac{110,000 \times 1}{200 \times 7.5} \approx 73.3
+$$
+
+> *Interpretation: Machine operates 73x faster than a typical human typing rate, assuming \~7.5 bits per human word.*
+
+---
+
+#### 2. **Meaning Compression Ratio (MCR)**
+
+If only 300 out of the 2048 possible 11-bit words are used regularly:
+
+$$
+\text{MCR} = \frac{2048}{300} \approx 6.83
+$$
+
+> *This tells us how densely the symbol space is being compressed into meaningful tokens. A lower active usage increases MCR.*
+
+---
+
+#### 3. **Semantic Outcome Complexity (SOC)**
+
+In machines, this can be tied to the **number of unique programmatic outcomes** triggered by interpreting a word.
+
+If 300 words map to:
+
+* 150 distinct actions → Low SOC (high synonymy)
+* 300 distinct actions → Moderate SOC
+* > 1000 possible conditional actions (based on external state) → High SOC
+
+For this example, if every word has a context-modulated interpretation:
+
+$$
+\text{SOC} = \text{Avg Outcomes per Word} \times \text{Contextual Multiplicity}
+$$
+
+---
+
+### 🧠 Language Decomposition via Distribution
+
+As you suggested, we can **reverse engineer** the language by observing:
+
+* Frequencies of bit patterns (word usage histogram)
+* Conditional probabilities (word A often followed by word B)
+* Clusters of words producing similar **actor** outputs
+* Entropy: how predictable is each word in context?
+
+---
+
+### 🔄 Summary Equation for Language Complexity Index (LCI)
+
+Let’s define:
+
+$$
+\text{LCI} = \log_2(\text{SCV}) + \log_2(\text{MCR}) + \log_2(1 + \text{SOC})
+$$
+
+This logarithmic approach weights growth in capacity, compression, and expressivity.
+
+---
+
+Would you like to simulate a language of 11-bit words and calculate these distributions from random or structured data?
 
 
 
@@ -487,7 +626,15 @@ These represent the **expressive power** and **efficiency** of the language.
 
 
 
-># Chapter 7: Tools for Signal Semiotics
+
+
+
+
+
+
+
+
+># Chapter 8: Tools for Signal Semiotics
 ### 🧪 Signal Semiotics as Decomposition
 
 *Language Decomposition via Distribution* is the core of **Signal Semiotics**. What SSET can do is:
