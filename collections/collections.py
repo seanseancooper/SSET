@@ -14,6 +14,11 @@
 #       are inserted sequentially in time?
 # -- does it make better sense to sort this synthetically via internal/external method?
 # -- equals: Same timestamp, carrier_freq and domain.
+# -- operations on collections like having collection members provide/process as a collectio and ereturn a collection:
+#
+#     def get_all_timestamps(self, signalframes: list[SignalFrame]):
+#         return [s.get_timestamp() for s in signalframes]
+#
 
 # Lists: mutable sequences, typically used to store collections of homogeneous items.
 #       NATIVELY SORTABLE
