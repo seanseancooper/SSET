@@ -62,7 +62,7 @@ class SignalEventList:
         self.events = events
         self.carrier_freq = events
 
-    def filter_by_time(self, start: float, end: float) -> List[SignalEvent]:
+    def filter_by_time_range(self, start: float, end: float) -> List[SignalEvent]:
         return [e for e in self.events if start <= e.timestamp <= end]
 
     def __eq__(self, other):
