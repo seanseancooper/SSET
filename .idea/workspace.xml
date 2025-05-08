@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bee55ec1-ea53-402b-811b-c61d8deb3eeb" name="Changes" comment="More editorial; moved some of the actor 'reveal'.&#10;&#10;Removed the taxa equivalent names; this isn't about animals, it's about comparison. I'm thinking that removing the common names it makes the reader consider the comparison as opposed to any 'biases' they may hold on cats.&#10;&#10;Moved the tables around; we have 8 chapters now.&#10;&#10;Items to reflect on at the bottom... not really definitive ideas -- more like items to include/discuss.">
+    <list default="true" id="bee55ec1-ea53-402b-811b-c61d8deb3eeb" name="Changes" comment="changed project structure.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collections/collections.py" beforeDir="false" afterPath="$PROJECT_DIR$/collections/collections.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/primitives.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/primitives.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/signal_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/signal_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/time_frequency_frame.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/time_frequency_frame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discussion.md" beforeDir="false" afterPath="$PROJECT_DIR$/discussion.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/theory_of_signal_semiotics.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theory_of_signal_semiotics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/semiotic/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/semiotic/interpreter.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +93,55 @@
       <option name="project" value="LOCAL" />
       <updated>1746596905089</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="More editorial work on individual sections:&#10;Chapter 2: Transposition &amp; Transformation&#10;working to define Transposition &amp; Transformation, differentiate them.&#10;&#10;Chapter 5: Toward a Semiotic Language Model -- work on Species Comparison section.&#10;&#10;New Chapter 6: Modeling a Machine Language">
+      <option name="closed" value="true" />
+      <created>1746677146825</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746677146825</updated>
+    </task>
+    <task id="LOCAL-00007" summary="More editorial work on individual sections:&#10;Chapter 2: Transposition &amp; Transformation&#10;working to define Transposition &amp; Transformation, differentiate them.&#10;&#10;Chapter 5: Toward a Semiotic Language Model -- work on Species Comparison section.&#10;&#10;New Chapter 6: Modeling a Machine Language">
+      <option name="closed" value="true" />
+      <created>1746677150425</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746677150425</updated>
+    </task>
+    <task id="LOCAL-00008" summary="updated collections classes planning.">
+      <option name="closed" value="true" />
+      <created>1746677178673</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746677178673</updated>
+    </task>
+    <task id="LOCAL-00009" summary="first pass at collections classes.">
+      <option name="closed" value="true" />
+      <created>1746677201858</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746677201858</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactored notes &amp; comments.">
+      <option name="closed" value="true" />
+      <created>1746677249828</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1746677249828</updated>
+    </task>
+    <task id="LOCAL-00011" summary="changed project structure.">
+      <option name="closed" value="true" />
+      <created>1746677281227</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1746677281227</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,6 +162,11 @@
     <MESSAGE value="&quot;All Your Base Are Belong to Us.&quot;" />
     <MESSAGE value="More editorial; this appears to be better organized now, but there are opportunities for expansion of ideas AND typos to deal with. See TT &amp; EM.&#10;&#10;The formatting is coming along; I like the idea of the chapter header and overview being in a box. &#10;&#10;The figures in the tables still need cites and attributions as do any links. &#10;&#10;The idea today is to paint broad strokes and get the idea down; I have full confidence this ccan be achieved, the question is are my hunches right and is it now feasible to do so." />
     <MESSAGE value="More editorial; moved some of the actor 'reveal'.&#10;&#10;Removed the taxa equivalent names; this isn't about animals, it's about comparison. I'm thinking that removing the common names it makes the reader consider the comparison as opposed to any 'biases' they may hold on cats.&#10;&#10;Moved the tables around; we have 8 chapters now.&#10;&#10;Items to reflect on at the bottom... not really definitive ideas -- more like items to include/discuss." />
-    <option name="LAST_COMMIT_MESSAGE" value="More editorial; moved some of the actor 'reveal'.&#10;&#10;Removed the taxa equivalent names; this isn't about animals, it's about comparison. I'm thinking that removing the common names it makes the reader consider the comparison as opposed to any 'biases' they may hold on cats.&#10;&#10;Moved the tables around; we have 8 chapters now.&#10;&#10;Items to reflect on at the bottom... not really definitive ideas -- more like items to include/discuss." />
+    <MESSAGE value="More editorial work on individual sections:&#10;Chapter 2: Transposition &amp; Transformation&#10;working to define Transposition &amp; Transformation, differentiate them.&#10;&#10;Chapter 5: Toward a Semiotic Language Model -- work on Species Comparison section.&#10;&#10;New Chapter 6: Modeling a Machine Language" />
+    <MESSAGE value="updated collections classes planning." />
+    <MESSAGE value="first pass at collections classes." />
+    <MESSAGE value="refactored notes &amp; comments." />
+    <MESSAGE value="changed project structure." />
+    <option name="LAST_COMMIT_MESSAGE" value="changed project structure." />
   </component>
 </project>
