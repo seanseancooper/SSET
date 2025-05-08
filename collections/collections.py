@@ -4,19 +4,20 @@ from core.time_frequency_frame import TimeFrequencyFrame
 from typing import Dict, List
 
 
+def filter_by_time_range(filterable, start: float, end: float) -> List:
+    return [f for f in filterable if start <= f.timestamp <= end]
+
 
 class SignalFrameArray:
 
     def __init__(self, frames: List[SignalFrame]):
         self.frames = frames
 
-    # query helpers
     def select_range(self, start: float, end: float) -> List[SignalFrame]:
         return [f for f in self.frames if start <= f.timestamp <= end]
 
     def filter_by_time_range(self, start: float, end: float) -> List[SignalFrame]:
-        return [f for f in self.frames if start <= f.timestamp <= end]
-
+        return filter_by_time_range(self.frames, start, end)
 
 
 class TimeFrequencyFrameList:
@@ -28,7 +29,7 @@ class TimeFrequencyFrameList:
         return [f for f in self.frames if start <= f.start_time <= end]
 
     def filter_by_time_range(self, start: float, end: float) -> List[TimeFrequencyFrame]:
-        return [f for f in self.frames if start <= f.start_time <= end]
+        return filter_by_time_range(self.frames, start, end)
 
 
 class EmitterGroup:
@@ -42,7 +43,11 @@ class EmitterGroup:
     def get_emitters_by_platform_type(self, platform_type):
         return [self.emitters[id] for id in self.emitters if self.emitters[id].platform_type is platform_type]
 
-    # Bias comparison or merge
+    # Bias dict comparison
+    # Bias dict merge
+    # search description field in a collection
+    # get list of id
+    # get list of description
 
 
 class EMFieldArray:
@@ -51,21 +56,17 @@ class EMFieldArray:
         self.fields = fields
 
     def filter_by_time_range(self, start: float, end: float) -> List[EMField]:
-        return [f for f in self.fields if start <= f.timestamp <= end]
+        return filter_by_time_range(self.fields, start, end)
 
 
 class SignalEventList:
 
     def __init__(self, events: List[SignalEvent]):
         self.events = events
-        self.carrier_freq = events
 
     def filter_by_time_range(self, start: float, end: float) -> List[SignalEvent]:
-        return [e for e in self.events if start <= e.timestamp <= end]
+        return filter_by_time_range(self.events, start, end)
 
-    def __eq__(self, other):
-        return (super().__eq__(other) and
-                self.carrier_freq == other.carrier_freq)
 
 
 class SignalMessageList:
@@ -74,5 +75,5 @@ class SignalMessageList:
         self.frames = frames
 
     def filter_by_time_range(self, start: float, end: float) -> List[SignalMessage]:
-        return [f for f in self.frames if start <= f.timestamp <= end]
+        return filter_by_time_range(self.frames, start, end)
 
