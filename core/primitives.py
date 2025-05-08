@@ -40,23 +40,25 @@ class Emitter:
 
     def set_known_bias(self, known_bias: Optional[Dict[str, Any]]):
         self.known_bias = known_bias
-    # You suggested: ID + platform_type — ✅ agreed. You could consider making id the only thing that matters if it's globally unique.
+
+    def __eq__(self, other):
+        return (self.id == other.id) and (self.platform_type == other.platform_type)
 
 
 class EmitterGroup:
-    # this is wrong...
 
     def __init__(self, emitters: Dict[str, Emitter]):
-        self.id = emitters['id']
         self.emitters = emitters
 
-    # Dict[str, Emitter] where key is emitter.id
-    # Consider adding an EmitterGroup class with:
     # Lookup by ID
+    def get_emitter(self, _id):
+        return self.emitters[_id]
+
     # Grouping by platform_type
+    def get_emitters_by_platform(self, _platform):
+        return [self.emitters[id] for id in self.emitters if self.emitters[id].platform_type is _platform]
+
     # Bias comparison or merge
-    def __eq__(self, other):
-        return (self.id == other.id) and (self.platform_type == other.platform_type)
 
 
 class EMField:
@@ -106,6 +108,9 @@ class EMFieldArray:
 
     def __init__(self, fields: List[EMField]):
         self.fields = fields
+
+    def filter_by_time_range(self, start: float, end: float) -> List[EMField]:
+        return [f for f in self.fields if start <= f.timestamp <= end]
 
 
 class SignalEvent(EMField):
@@ -171,7 +176,6 @@ class SignalEventList:
         self.events = events
         self.carrier_freq = events
 
-    # Range query should be external method:
     def filter_by_time(self, start: float, end: float) -> List[SignalEvent]:
         return [e for e in self.events if start <= e.timestamp <= end]
 
@@ -229,7 +233,6 @@ class SignalMessageList:
     def __init__(self, frames: List[SignalMessage]):
         self.frames = frames
 
-    # .filter_by_time() method
     def filter_by_time_range(self, start: float, end: float) -> List[SignalMessage]:
         return [f for f in self.frames if start <= f.timestamp <= end]
 
