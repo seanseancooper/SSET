@@ -7,6 +7,7 @@ from typing import Dict, List
 def filter_by_time_range(filterable, start: float, end: float) -> List:
     return [f for f in filterable if start <= f.timestamp <= end]
 
+# add methods in 5/7 collections doc.
 
 class SignalFrameArray:
 
