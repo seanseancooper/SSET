@@ -41,7 +41,7 @@ class EmitterGroup:
         return self.emitters[_id]
 
     # Grouping by platform_type
-    def get_emitters_by_platform(self, _platform):
+    def get_emitters_by_platform_type(self, _platform):
         return [self.emitters[id] for id in self.emitters if self.emitters[id].platform_type is _platform]
 
     # Bias comparison or merge
