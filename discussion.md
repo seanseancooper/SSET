@@ -2619,10 +2619,954 @@ Would you like a diagram showing the mapping from `Signal_t` to distributions ac
 
 ---
 
+No; have a look at this SignalFrame factoring; I added magnitude, phase and getters/ssetters:
+
+import numpy as np
+from scipy.signal import get\_window
+
+from typing import Optional, Dict, Any
+
+class SignalFrame:
+def **init**(
+self,
+timestamp: float,
+duration: float,
+carrier\_freq: float,
+bandwidth: float,
+data: np.ndarray,
+domain: str = "time",
+metadata: Optional\[Dict\[str, Any]] = None
+):
+"""
+Represents a segment or 'frame' of an EM signal in either time or frequency domain.
+
+```
+    Parameters:
+    - timestamp: Time of capture (seconds since epoch)
+    - duration: Duration of the frame in seconds
+    - carrier_freq: Central frequency in Hz
+    - bandwidth: Signal width in Hz
+    - data: Array representing IQ samples, power spectrum, or waveform
+    - domain: 'time', 'frequency', or future: 'mixed'
+    - metadata: Arbitrary static or dynamic metadata
+    """
+
+    self.timestamp = timestamp
+    self.duration = duration
+    self.carrier_freq = carrier_freq
+    self.bandwidth = bandwidth
+    self.data = data
+    self.domain = domain
+    self.metadata = metadata or {}
+
+    self.phase = float
+    self.magnitude = np.ndarray
+    self.window = None
+    self.set_magnitude_phase()  # calculate on init
+
+def get_timestamp(self) -> float:
+    return self.timestamp
+
+def get_duration(self) -> float:
+    # calculate this from self.data
+    return self.duration
+
+def get_carrier_freq(self) -> float:
+    return self.carrier_freq
+
+def get_bandwidth(self) -> float:
+    return self.bandwidth
+
+def get_data(self):
+    return self.data
+
+def set_data(self, data: np.ndarray):
+    self.data = data
+    self.set_magnitude_phase()  # recalculate for new data
+
+def get_domain(self) -> str:
+    return self.domain
+
+def get_metadata(self) -> Optional[Dict[str, Any]]:
+    return self.metadata
+
+def set_metadata(self, metadata: Optional[Dict[str, Any]]):
+    self.metadata = metadata
+
+def get_phase(self) -> float:
+    m, p = self.set_magnitude_phase()
+    return p
+
+def get_magnitude(self) -> np.ndarray:
+    m, _ = self.set_magnitude_phase()
+    return m
+
+def set_magnitude_phase(self) -> (np.ndarray, float):
+    data = self.data                # default
+    if self.domain == "frequency":  # 'mixed' TBD
+        data = np.fft.fft(self.data)
+    m = np.abs(data)
+    p = np.angle(data)
+    return m, p
+
+def get_window(self) -> object:
+    return self.window
+
+def set_window(self, window, size):
+    self.window = get_window(window, size)
+
+def to_frequency_domain(self):
+    if self.domain == "frequency":
+        return self
+    spectrum = np.fft.fft(self.data)  # data is time-domain
+    self.set_magnitude_phase()
+    return SignalFrame(
+        timestamp=self.timestamp,
+        duration=self.duration,
+        carrier_freq=self.carrier_freq,
+        bandwidth=self.bandwidth,
+        data=np.abs(spectrum),
+        domain="frequency",
+        metadata=self.metadata
+    ), (self.magnitude, self.phase)
+
+def to_time_domain(self):
+    if self.domain == "time":
+        return self
+    waveform = np.fft.ifft(self.data)  # data is frequency-domain
+    self.set_magnitude_phase()
+    return SignalFrame(
+        timestamp=self.timestamp,
+        duration=self.duration,
+        carrier_freq=self.carrier_freq,
+        bandwidth=self.bandwidth,
+        data=np.real(waveform),
+        domain="time",
+        metadata=self.metadata
+    ), (self.magnitude, self.phase)
+```
+
+---
+
+Yes, your `SignalFrame` factoring is an excellent advancement. By extracting **magnitude** and **phase**, you're equipping the structure to better reflect the *symbolic content* and *structure* of the signal, in a way directly aligned with your symbolic model:
+
+### Mapping SignalFrame to the Semiotic Equation
+
+Recall:
+
+$$
+\text{Signal}_t = f\left(\text{Symbol}_t, \text{Meaning}_t, \phi\left(\psi(\text{Symbol}_t, \text{Meaning}_t), \text{Context}_t\right)\right)
+$$
+
+* `magnitude` and `phase` form the **perceptual symbol space** — instrumental to defining `Symbol_t`.
+* `metadata` (including possibly inferred labels, classification tags, or context descriptors) supports interpretation and contextualization → `Meaning_t`.
+* `SignalFrame` as a whole is a structured observational unit that can yield **actors** through downstream analysis (e.g., triggering events, classifications, semantic inferences).
+
+### Why This Matters for SSET
+
+This structure:
+
+* Enables **symbol decomposition** into measurable components (phase, amplitude).
+* Supports **distributional analysis** across time and frequency.
+* Can be statistically profiled across symbol spaces to derive **word rates**, **symbol entropy**, and **meaning convergence**.
+
+Would you like to expand this with symbolic classification methods (e.g., clustering similar `SignalFrame` objects) or build a registry of inferred `Actor` outcomes?
 
 
 
-Would you like to formalize Actor as a typed structure in the toolkit?
+---
+
+I'm still working through some of the other classes; look at TimeFrequencyFrame :
+
+### signal\_semiotics\_toolkit/core/time\_frequency\_frame.py
+
+import numpy as np
+from typing import Optional, Dict, Any
+
+class TimeFrequencyFrame:
+"""
+Represents a signal as a matrix across time and frequency dimensions.
+Each cell captures intensity, amplitude, or complex energy.
+"""
+
+```
+def __init__(self,
+             start_time: float,
+             duration: float,
+             freq_min: float,
+             freq_max: float,
+             tf_matrix: np.ndarray,
+             metadata: Optional[Dict[str, Any]] = None):
+    self.start_time = start_time
+    self.duration = duration
+    self.freq_min = freq_min
+    self.freq_max = freq_max
+    self.tf_matrix = tf_matrix              # 2D array: time (rows) x frequency (cols)
+    self.metadata = metadata or {}
+
+def get_start_time(self) -> float:
+    return self.start_time
+
+def get_duration(self) -> float:
+    return self.duration
+
+def set_freq_min(self, freq_min: float):
+    self.freq_min = freq_min
+
+def get_freq_min(self) -> float:
+    return self.freq_min
+
+def set_freq_max(self, freq_max: float):
+    self.freq_max = freq_max
+
+def get_freq_max(self) -> float:
+    return self.freq_max
+
+def get_tf_matrix(self) -> np.ndarray:
+    return self.tf_matrix
+
+def set_metadata(self, metadata: Optional[Dict[str, Any]] = None):
+    self.metadata = metadata
+
+def get_metadata(self) -> Optional[Dict[str, Any]]:
+    return self.metadata
+
+def get_time_axis(self) -> np.ndarray:
+    return np.linspace(self.start_time, self.start_time + self.duration, self.tf_matrix.shape[0])
+
+def get_freq_axis(self) -> np.ndarray:
+    return np.linspace(self.freq_min, self.freq_max, self.tf_matrix.shape[1])
+
+def to_dict(self) -> Dict[str, Any]:
+    return {
+        "start_time": self.start_time,
+        "duration": self.duration,
+        "freq_min": self.freq_min,
+        "freq_max": self.freq_max,
+        "tf_matrix": self.tf_matrix.tolist(),
+        "metadata": self.metadata
+    }
+
+def plot(self, cmap: str = "viridis") -> None:
+    import matplotlib.pyplot as plt
+    plt.imshow(
+        self.tf_matrix,
+        extent=[self.freq_min, self.freq_max, self.start_time + self.duration, self.start_time],
+        aspect='auto',
+        cmap=cmap
+    )
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Time (s)")
+    plt.title("Time-Frequency Frame")
+    plt.colorbar(label="Amplitude or Energy")
+    plt.show()
+
+def slice_time(self, t_start: float, t_end: float) -> 'TimeFrequencyFrame':
+    """Slice the frame between two times."""
+    total_rows = self.tf_matrix.shape[0]
+    time_axis = self.get_time_axis()
+    idx_start = np.searchsorted(time_axis, t_start)
+    idx_end = np.searchsorted(time_axis, t_end)
+    sliced_matrix = self.tf_matrix[idx_start:idx_end, :]
+    new_duration = t_end - t_start
+    return TimeFrequencyFrame(
+        start_time=t_start,
+        duration=new_duration,
+        freq_min=self.freq_min,
+        freq_max=self.freq_max,
+        tf_matrix=sliced_matrix,
+        metadata=self.metadata
+    )
+
+def slice_frequency(self, f_start: float, f_end: float) -> 'TimeFrequencyFrame':
+    """Slice the frame between two frequencies."""
+    total_cols = self.tf_matrix.shape[1]
+    freq_axis = self.get_freq_axis()
+    idx_start = np.searchsorted(freq_axis, f_start)
+    idx_end = np.searchsorted(freq_axis, f_end)
+    sliced_matrix = self.tf_matrix[:, idx_start:idx_end]
+    new_freq_min = f_start
+    new_freq_max = f_end
+    return TimeFrequencyFrame(
+        start_time=self.start_time,
+        duration=self.duration,
+        freq_min=new_freq_min,
+        freq_max=new_freq_max,
+        tf_matrix=sliced_matrix,
+        metadata=self.metadata
+    )
+
+def energy(self) -> float:
+    """Calculate total energy across the frame."""
+    return np.sum(np.abs(self.tf_matrix)**2)
+```
+
+---
+
+This `TimeFrequencyFrame` class is a robust representation of **spatiotemporal signal structure**, and it plays a crucial role in **symbol decomposition** and **semiotic inference** in SSET.
+
+Here’s how it fits your framework and complements `SignalFrame`:
+
+---
+
+### 🔧 **Semiotic Roles and Mapping**
+
+| Concept                 | Role in SSET / Signal Semiotics                                  | Source in Class         |
+| ----------------------- | ---------------------------------------------------------------- | ----------------------- |
+| **Symbol Field**        | Localized energy across `tf_matrix`; these are raw signs         | `tf_matrix[i][j]`       |
+| **Time Structure**      | Temporal evolution of signal shapes                              | `get_time_axis()`       |
+| **Frequency Structure** | Symbolic range — like vocabulary size                            | `get_freq_axis()`       |
+| **Semantic Envelope**   | Patterns/clusters over time-frequency — potential meaning        | `plot()` + `energy()`   |
+| **Contextual Frame**    | Metadata, slicing, frame structure                               | `metadata`, `slice_*()` |
+| **Transformation Tool** | Acts as a substrate for symbolic detection or feature extraction | external models         |
+
+---
+
+### 💡 Strategic Capabilities for SSET
+
+This class allows:
+
+* **Localized Symbol Inference**: Each cell in `tf_matrix` can represent a symbol or event.
+* **Dynamic Symbol Scope**: `slice_time()` and `slice_frequency()` allow you to investigate *subsymbolic patterns* or isolate events.
+* **Semantic Envelope Detection**: Using `energy()` and visual analysis, SSET can identify meaning-carrying events or actors.
+* **Time-Frequency Lexicon Construction**: Over many frames, symbolic usage statistics can be collected.
+
+---
+
+### 🧠 Integration with SignalFrame
+
+While `SignalFrame` handles:
+
+* A *single-dimensional* (time or frequency) slice
+* One-shot or short-frame symbolic interpretations
+
+Your `TimeFrequencyFrame` allows:
+
+* **Multidimensional symbolic pattern detection**
+* Analysis of frequency *modulation*, *overlap*, or *harmonics* as semiotic cues
+* **Linguistic structure emergence** (repeated bursts, harmonics, drift, etc.)
+
+Together, they form a powerful *symbol detection and interpretation pipeline* — from **raw signs** to **interpretable semiotic actors**.
+
+---
+
+Would you like help implementing:
+
+1. **Symbol detection** (e.g., peak finding, clustering)?
+2. A `SymbolicLexicon` class to track repeated patterns across multiple frames?
+3. Entropy/complexity metrics to quantify the symbolic richness of a `TimeFrequencyFrame`?
+
+---
+
+have a look @ the primitives refactoring:
+
+### signal\_semiotics\_toolkit/core/primitives.py
+
+from typing import Optional, Dict, Any, Tuple, Union
+import numpy as np
+
+class Emitter:
+def **init**(self, id: str, description: str, platform\_type: str, known\_bias: Optional\[Dict\[str, Any]] = None):
+self.id = id
+self.description = description
+self.platform\_type = platform\_type
+self.known\_bias = known\_bias or {}
+
+```
+def get_id(self) -> str:
+    return self.id
+
+def get_description(self) -> str:
+    return self.description
+
+def set_description(self, description:str):
+    self.description = description
+
+def get_platform_type(self) -> str:
+    return self.platform_type
+
+def set_platform_type(self, platform_type: str):
+    self.platform_type = platform_type
+
+def get_known_bias(self) -> Optional[Dict[str, Any]]:
+    return self.known_bias
+
+def set_known_bias(self, known_bias: Optional[Dict[str, Any]]):
+    self.known_bias = known_bias
+```
+
+class EMField:
+
+```
+def __init__(
+    self,
+    timestamp: float,
+    location: Tuple[float, float, Optional[float]],
+    domain: str,
+    data: np.ndarray,
+    metadata: Optional[Dict[str, Any]] = None
+):
+    self.timestamp = timestamp
+    self.location = location                # lat, lon, optional altitude. static or mutatable?
+    self.domain = domain                    # 'time', 'frequency', 'spatial', 'symbolic'
+    self.data = data
+    self.metadata = metadata or {}
+
+def get_timestamp(self) -> float:
+    return self.timestamp
+
+def get_location(self) -> Tuple[float, float, Optional[float]]:
+    return self.location
+
+def get_domain(self) -> str:
+    return self.domain
+
+def get_data(self) -> np.ndarray:
+    return self.data
+
+def set_data(self, data: np.ndarray):
+    self.data = data
+
+def get_metadata(self) -> Optional[Dict[str, Any]]:
+    return self.metadata
+
+def set_metadata(self, metadata: Optional[Dict[str, Any]]):
+    self.metadata = metadata
+```
+
+class SignalEvent(EMField):
+def **init**(
+self,
+timestamp: float,
+location: Tuple\[float, float, Optional\[float]],
+domain: str,
+data: np.ndarray,
+duration: float,
+carrier\_freq: float,
+bandwidth: float,
+emitter: Optional\[Emitter] = None,
+modulation: Optional\[str] = None,
+snr: Optional\[float] = None,
+metadata: Optional\[Dict\[str, Any]] = None
+):
+super().**init**(timestamp, location, domain, data, metadata)
+self.duration = duration
+self.carrier\_freq = carrier\_freq
+self.bandwidth = bandwidth
+self.emitter = emitter
+self.modulation = modulation
+self.snr = snr
+
+```
+def get_duration(self) -> float:
+    return self.duration
+
+def get_carrier_freq(self) -> float:
+    return self.carrier_freq
+
+def get_bandwidth(self) -> float:
+    return self.bandwidth
+
+def get_emitter(self) -> Optional[Emitter]:
+    return self.emitter
+
+def get_modulation(self) -> Optional[str]:
+    return self.modulation
+
+def get_snr(self) ->Optional[float]:
+    return self.snr
+```
+
+class SignalMessage(SignalEvent):
+def **init**(
+self,
+timestamp: float,
+location: Tuple\[float, float, Optional\[float]],
+domain: str,
+data: np.ndarray,
+duration: float,
+carrier\_freq: float,
+bandwidth: float,
+decoded: Optional\[Union\[str, bytes, Dict]] = None,
+semantics: Optional\[str] = None,
+emitter: Optional\[Emitter] = None,
+modulation: Optional\[str] = None,
+snr: Optional\[float] = None,
+metadata: Optional\[Dict\[str, Any]] = None
+):
+super().**init**(timestamp, location, domain, data, duration, carrier\_freq, bandwidth, emitter, modulation, snr, metadata)
+self.decoded = decoded
+self.semantics = semantics
+
+```
+def get_decoded(self) -> Optional[Union[str, bytes, Dict]]:
+    return self.decoded
+
+def set_decoded(self, decoded: Optional[Union[str, bytes, Dict]]):
+    self.decoded = decoded
+
+def get_semantics(self) -> Optional[str]:
+    return self.semantics
+
+def set_semantics(self, semantics: Optional[str]):
+    self.semantics = semantics
+```
+
+---
+
+This refactoring is excellent — it cleanly defines foundational **semiotic primitives** that map intuitively to real-world signal intelligence constructs while staying modular enough for analysis and transformation within your SSET framework.
+
+Let’s walk through the design and suggest where this fits into the **semiotic pipeline** and **higher abstraction layers**.
+
+---
+
+### 🔧 Core Design Strengths
+
+| Class             | Role in Semiotics                    | Comments                                                                           |
+| ----------------- | ------------------------------------ | ---------------------------------------------------------------------------------- |
+| **Emitter**       | **Actor** or **sign source**         | Includes bias — important for hypothesis testing or adversarial modeling.          |
+| **EMField**       | **Base signal observation**          | General enough for symbolic, time, freq, or spatial domains.                       |
+| **SignalEvent**   | **Observed symbolic act** (a *sign*) | Encapsulates an emission instance, ready for pattern classification.               |
+| **SignalMessage** | **Interpreted sign** (a *message*)   | Adds decoded content + intended semantics → this is where inference or LLMs enter. |
+
+---
+
+### 🧠 Conceptual Alignment with Semiotic Theory
+
+| Peircean Concept         | Your Primitive                          | Explanation                                                  |
+| ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
+| **Representamen (Sign)** | `SignalEvent`                           | The signal-as-it-appears                                     |
+| **Object (Referent)**    | `Emitter`, `carrier_freq`, `modulation` | The real-world actor or process behind the signal            |
+| **Interpretant**         | `SignalMessage.semantics`               | Meaning inferred by a system or human                        |
+| **Ground (Context)**     | `metadata`, `location`, `domain`        | Frame of reference for interpretation                        |
+| **Bias**                 | `Emitter.known_bias`                    | A formalization of *expectation error* in symbolic inference |
+
+This mapping allows symbolic or cognitive modeling atop your data.
+
+---
+
+### ✅ Suggestions for Strengthening
+
+Here are some ideas you might consider:
+
+#### 1. **Add `id` or `uuid` to EMField**
+
+Useful for tracking transformations across frames and events.
+
+```python
+import uuid
+self.id = str(uuid.uuid4())  # or externally passed
+```
+
+#### 2. **Support for Composite or Nested Signals**
+
+You may want `SignalEvent` or `SignalMessage` to include a list of *sub-events*.
+This allows **message decomposition** (e.g., framing, preamble, payload).
+
+```python
+self.sub_events: List[SignalEvent] = []
+```
+
+#### 3. **Entropy/Complexity Field (optional)**
+
+Add a method to `SignalEvent` for computing entropy over `data`. This could be used for symbolic density estimation or "information content" scoring.
+
+```python
+def entropy(self) -> float:
+    p = self.data / np.sum(self.data)
+    return -np.sum(p * np.log2(p + 1e-12))
+```
+
+#### 4. **Domain-Specific Validators**
+
+You could enforce consistency rules (e.g., for frequency domain signals, `carrier_freq` should be inside the domain range of `data`).
+
+---
+
+### 🧩 Interoperability
+
+These primitives are designed to plug into:
+
+* `TimeFrequencyFrame` → wraps multiple `SignalEvent`s
+* `SignalFrame` → general time/frequency slice tied to a `SignalEvent`
+* LLM interaction → `SignalMessage` becomes the bridge to **semantic grounding**
+
+---
+
+Would you like me to sketch a diagram showing the relationships between these classes in a semiotic analysis pipeline?
+
+
+---
+
+Well, you bring up a germane point; collections are what I am thinking about. This is in the planning stage -- I'd appreciate feedback germanee to the types discussed:
+```
+# Range objects implement the collections.abc.Sequence ABC, and provide features
+
+#   Range objects implement the collections.abc.Sequence ABC, and provide features
+#   such as containment tests, element index lookup, slicing and support
+#   for negative indices. The advantage of the range type over a regular list or
+#   tuple is that a range object will always take the same (small) amount of memory,
+#   no matter the size of the range it represents
+
+#   A 'Range' of SignalFrame (a 'SignalFrameArray')
+# -- would this be better as a list? is there a need to sort these, given they
+#       are inserted sequentially in time?
+# -- does it make better sense to sort this synthetically via internal/external method?
+# -- equals: Same timestamp, carrier_freq and domain.
+# -- operations on collections like having collection members provide/process as a collectio and ereturn a collection:
+#
+#     def get_all_timestamps(self, signalframes: list[SignalFrame]):
+#         return [s.get_timestamp() for s in signalframes]
+#
+
+# Lists: mutable sequences, typically used to store collections of homogeneous items.
+#       NATIVELY SORTABLE
+# Tuples: immutable sequences, typically used to store collections of heterogeneous
+#       data (such as the 2-tuples produced by the enumerate() built-in). Tuples are also
+#       used for cases where an immutable sequence of homogeneous data is needed
+#       (such as allowing storage in a set or dict instance)
+
+# A 'List' of TimeFrequencyFrame (a 'TimeFrequencyFrameList')
+# A 'Tuple' of TimeFrequencyFrame (a 'TimeFrequencyFrameSet')
+# -- does this need to be sortable
+
+# EmitterGroup? equals is: Same id and platform_type.
+# EMFieldArray: equals is: Same timstamp, location and domain.
+
+# A 'List' of SignalEvent (a 'SignalEventList')
+# A 'Range' of SignalEvent (a 'SignalEventRange')
+# -- would this be better as a range? events have timing. I can see a scanario where
+#       I want events occurring within a range od time
+# -- equals: Same EMField AND carrier_freq.
+
+# A 'List' of SignalMessage (a 'SignalMessageList')
+# -- would this be better as a 'range'? events have timing. I can see a scanario where
+#       I want messages within a range od time
+# -- equals: Same SignalEvent AND semantics.
+```
+
+---
+
+You're thinking in the right direction — especially by anchoring your collections in semantic and temporal equivalence. Here's a breakdown and my **recommendations per collection type**, rooted in your use cases and domain logic.
+
+---
+
+### 🔢 **General Guidance on Type Selection**
+
+| Type                       | Best For                           | Immutability | Memory          | Sortability      | Notes                                        |
+| -------------------------- | ---------------------------------- | ------------ | --------------- | ---------------- | -------------------------------------------- |
+| `list`                     | General-purpose, ordered sequences | Mutable      | Scales linearly | Native `.sort()` | Good for incremental construction, filtering |
+| `tuple`                    | Heterogeneous, hashable grouping   | Immutable    | Fixed-size      | Manual sort      | Use for sets, dict keys                      |
+| `range`                    | Numeric sequences                  | Immutable    | Constant        | Implied order    | Only works for *integers* (not objects)      |
+| `collections.abc.Sequence` | Abstract base for above            | N/A          | N/A             | Custom           | Enables polymorphism                         |
+
+---
+
+## 🧩 Specific Collection Suggestions
+
+---
+
+### 🟦 **SignalFrameArray**: a list-like container for `SignalFrame`
+
+* ✅ **Use**: `List[SignalFrame]`
+* ❓ **Sorting**: Optional — but define a `__lt__` method for temporal ordering if needed.
+* ➕ Suggestion:
+
+  ```python
+  def __lt__(self, other): 
+      return self.timestamp < other.timestamp
+  ```
+* Consider providing **query helpers** like:
+
+  ```python
+  def select_range(self, start: float, end: float) -> List[SignalFrame]:
+      return [f for f in self.frames if start <= f.timestamp <= end]
+  ```
+
+---
+
+### 🟦 **TimeFrequencyFrameList** vs **Set**
+
+* ✅ **Use**: `List[TimeFrequencyFrame]`
+* ❓ Use a `tuple` or `set` only if you need **uniqueness** or **hashable composition**
+* ❗ Only sort if you're going to scan/analyze these sequentially — otherwise dict-based lookups are better.
+
+---
+
+### 🟦 **EmitterGroup**
+
+* ✅ Use: `Dict[str, Emitter]` where key is `emitter.id`
+* Define equality:
+
+  ```python
+  def __eq__(self, other):
+      return (self.id == other.id) and (self.platform_type == other.platform_type)
+  ```
+* ❗ Consider adding an `EmitterGroup` class with:
+
+  * Lookup by ID
+  * Grouping by `platform_type`
+  * Bias comparison or merge
+
+---
+
+### 🟦 **EMFieldArray**
+
+* ✅ Use: `List[EMField]` for flexible storage
+
+* Suggest custom equality as:
+
+  ```python
+  def __eq__(self, other):
+      return (self.timestamp == other.timestamp and
+              self.location == other.location and
+              self.domain == other.domain)
+  ```
+
+* Could also support fast location-based filtering using an R-tree or spatial index if scaling up.
+
+---
+
+### 🟦 **SignalEventList / SignalEventRange**
+
+* ✅ Use: `List[SignalEvent]`, potentially sorted by `timestamp`
+
+* 🔍 Range query should be **external method**:
+
+  ```python
+  def filter_by_time(self, start: float, end: float) -> List[SignalEvent]:
+      return [e for e in self.events if start <= e.timestamp <= end]
+  ```
+
+* 🚨 Avoid using `range()` — it’s for numeric sequences only.
+
+* Define:
+
+  ```python
+  def __eq__(self, other):
+      return (super().__eq__(other) and
+              self.carrier_freq == other.carrier_freq)
+  ```
+
+---
+
+### 🟦 **SignalMessageList**
+
+* ✅ Again: `List[SignalMessage]`, with `.filter_by_time()` method
+* Equality: Same as `SignalEvent` plus `semantics`
+
+  ```python
+  def __eq__(self, other):
+      return (super().__eq__(other) and
+              self.semantics == other.semantics)
+  ```
+
+---
+
+### 🧠 Design Suggestion: Abstract BaseCollection
+
+You could create a base class like `SignalCollection[T]` with methods like:
+
+```python
+class SignalCollection(Generic[T]):
+    def __init__(self, items: List[T]):
+        self.items = items
+
+    def filter_by_time(self, start: float, end: float) -> List[T]:
+        return [i for i in self.items if start <= i.timestamp <= end]
+
+    def sort_by_time(self):
+        self.items.sort(key=lambda x: x.timestamp)
+```
+
+Then subclass for each type (`SignalEventList`, `SignalFrameArray`, etc.).
+
+---
+
+### 🔚 Summary
+
+| Object Type          | Suggested Collection           | Sorting    | Filtering                      | Notes                          |
+| -------------------- | ------------------------------ | ---------- | ------------------------------ | ------------------------------ |
+| `SignalFrame`        | `List` (`SignalFrameArray`)    | Optional   | By time or domain              | Possibly sliceable             |
+| `TimeFrequencyFrame` | `List`                         | Optional   | Not needed unless time-aligned |                                |
+| `Emitter`            | `Dict[str, Emitter]` or `List` | Not needed | By platform/type               | Use `EmitterGroup` abstraction |
+| `EMField`            | `List`                         | Optional   | By location, domain            |                                |
+| `SignalEvent`        | `List` (`SignalEventList`)     | Yes        | By time, freq                  |                                |
+| `SignalMessage`      | `List` (`SignalMessageList`)   | Yes        | By time, semantics             |                                |
+
+---
+
+Would you like a scaffold for `SignalCollection[T]` and a few example subclasses?
+
+
+---
+
+I'd be curious why you've selected a List of SignalFrame as opposed to a Range. I can visualize  a scenario where I might need a time range of SignalFrame loaded into a SighnalFrameArray.
+
+Also, what is 'equality' when concerning these types? Did I capture the features/fields enough to dictate this?
+
+---
+
+Great questions — let's unpack both the **"Why List not Range?"** and your excellent point about **defining equality**.
+
+---
+
+## 🔁 Why `List[SignalFrame]` and not `Range`
+
+### ✅ Because `range` is **not suitable** for objects like `SignalFrame`
+
+Python’s built-in `range()` type:
+
+* Only supports **numeric** sequences (integers),
+* Is immutable and lazily evaluated,
+* Does **not support custom object sequences** unless you re-implement the entire behavior.
+
+In contrast:
+
+### ✅ `List[SignalFrame]` gives you:
+
+* **Mutable, dynamic** container for objects with complex attributes (e.g., time, freq, data),
+* **Supports slicing, sorting, indexing**,
+* You can still **filter by time** and even use a helper method like `get_range(start_time, end_time)`.
+
+So, your **concept of a "range of time"** is better modeled as:
+
+```python
+class SignalFrameArray:
+    def __init__(self, frames: List[SignalFrame]):
+        self.frames = frames
+
+    def filter_by_time_range(self, start: float, end: float) -> List[SignalFrame]:
+        return [f for f in self.frames if start <= f.timestamp <= end]
+```
+
+### ✅ Bonus: If you want lazy evaluation / memory savings, consider:
+
+* `collections.deque` for FIFO scenarios,
+* `generator` expressions for streaming data,
+* Or even a **custom iterable SignalFrameRange** class — but it’s still fundamentally list-based logic.
+
+---
+
+## 🟦 What is Equality for These Types?
+
+You’re close, and it's important to **define equality semantically**, not just structurally. Here are refined suggestions:
+
+### 🔹 `SignalFrame`
+
+Should be equal if:
+
+* `timestamp`, `domain`, and optionally `location` match
+* You may also want to define fuzzy equality (e.g., timestamps within ε)
+
+```python
+def __eq__(self, other):
+    return (
+        isinstance(other, SignalFrame)
+        and self.timestamp == other.timestamp
+        and self.domain == other.domain
+        and self.location == other.location
+    )
+```
+
+### 🔹 `SignalEvent`
+
+Extends `SignalFrame` equality + adds:
+
+* `carrier_freq`
+* `duration` (maybe)
+
+```python
+def __eq__(self, other):
+    return (
+        isinstance(other, SignalEvent)
+        and super().__eq__(other)
+        and self.carrier_freq == other.carrier_freq
+    )
+```
+
+### 🔹 `SignalMessage`
+
+Extends `SignalEvent` equality + adds:
+
+* `semantics`
+
+```python
+def __eq__(self, other):
+    return (
+        isinstance(other, SignalMessage)
+        and super().__eq__(other)
+        and self.semantics == other.semantics
+    )
+```
+
+### 🔹 `EMField`
+
+You suggested: timestamp + location + domain — ✅ I agree.
+
+### 🔹 `Emitter`
+
+You suggested: ID + platform\_type — ✅ agreed. You could consider making `id` the only thing that matters if it's globally unique.
+
+---
+
+## ✅ Summary of Recommendations
+
+| Type            | Equality Definition               | Notes                                |
+| --------------- | --------------------------------- | ------------------------------------ |
+| `SignalFrame`   | `timestamp`, `location`, `domain` | May use fuzzy matching for timestamp |
+| `SignalEvent`   | `SignalFrame` + `carrier_freq`    | Add `duration` if needed             |
+| `SignalMessage` | `SignalEvent` + `semantics`       | Optional: match `decoded`            |
+| `Emitter`       | `id`, `platform_type`             | `id` might be enough if unique       |
+| `EMField`       | Same as `SignalFrame`             | Conceptually same                    |
+
+Would you like me to draft a mixin or base class to encapsulate this equality logic cleanly across these types?
+
+---
+
+Awesome!
+
+---
+
+Glad that hit the mark! Here's a quick follow-up idea you might find useful:
+
+If you're going to be defining equality across multiple signal types, it might be worth introducing a shared **mixin** to handle structured equality in a DRY (Don't Repeat Yourself) way:
+
+---
+
+### 🧩 `EqualByFieldsMixin` (Optional Utility)
+
+```python
+class EqualByFieldsMixin:
+    _eq_fields: Tuple[str, ...] = ()
+
+    def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
+        return all(getattr(self, field) == getattr(other, field) for field in self._eq_fields)
+
+    def __hash__(self):
+        return hash(tuple(getattr(self, field) for field in self._eq_fields))
+```
+
+Then, for example:
+
+```python
+class SignalFrame(EqualByFieldsMixin):
+    _eq_fields = ('timestamp', 'location', 'domain')
+    def __init__(...): ...
+```
+
+Now everything downstream (e.g., `SignalEvent`, `SignalMessage`) can just add to `_eq_fields`.
+
+---
+
+Would you like me to integrate this into your `primitives.py` refactor and show the full structure with inheritance?
+
+---
+
+
+
 
 
 
