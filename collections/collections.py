@@ -1,36 +1,40 @@
 from core.primitives import Emitter, EMField, SignalEvent, SignalMessage
 from core.signal_model import SignalFrame
 from core.time_frequency_frame import TimeFrequencyFrame
-from typing import Dict, List
+from typing import Dict, List, Generic, T
 
-# make this a decorator and use it instead
-def filter_by_time_range(filterable, start: float, end: float) -> List:
-    return [f for f in filterable if start <= f.timestamp <= end]
 
-# add methods in 5/7 collections doc.
+class SignalCollection(Generic[T]):
+    def __init__(self, items: List[T]):
+        self.items = items
 
-class SignalFrameArray:
+    # add methods in 5/7 collections doc.
 
-    def __init__(self, frames: List[SignalFrame]):
+    def filter_by_time(self, start: float, end: float) -> List[T]:
+        return [i for i in self.items if start <= i.timestamp <= end]
+
+    def sort_by_time(self):
+        self.items.sort(key=lambda x: x.timestamp)
+
+
+class SignalFrameArray(SignalCollection):
+
+    def __init__(self, frames: List[SignalFrame], items: List[T]):
+        super().__init__(items)
         self.frames = frames
 
     def select_range(self, start: float, end: float) -> List[SignalFrame]:
         return [f for f in self.frames if start <= f.timestamp <= end]
 
-    def filter_by_time_range(self, start: float, end: float) -> List[SignalFrame]:
-        return filter_by_time_range(self.frames, start, end)
 
+class TimeFrequencyFrameList(SignalCollection):
 
-class TimeFrequencyFrameList:
-
-    def __init__(self, frames: List[TimeFrequencyFrame]):
+    def __init__(self, frames: List[TimeFrequencyFrame], items: List[T]):
+        super().__init__(items)
         self.frames = frames
 
     def select_range(self, start: float, end: float) -> List[TimeFrequencyFrame]:
         return [f for f in self.frames if start <= f.start_time <= end]
-
-    def filter_by_time_range(self, start: float, end: float) -> List[TimeFrequencyFrame]:
-        return filter_by_time_range(self.frames, start, end)
 
 
 class EmitterGroup:
@@ -51,29 +55,22 @@ class EmitterGroup:
     # get list of description
 
 
-class EMFieldArray:
+class EMFieldArray(SignalCollection):
 
-    def __init__(self, fields: List[EMField]):
+    def __init__(self, fields: List[EMField], items: List[T]):
+        super().__init__(items)
         self.fields = fields
 
-    def filter_by_time_range(self, start: float, end: float) -> List[EMField]:
-        return filter_by_time_range(self.fields, start, end)
 
+class SignalEventList(SignalCollection):
 
-class SignalEventList:
-
-    def __init__(self, events: List[SignalEvent]):
+    def __init__(self, events: List[SignalEvent], items: List[T]):
+        super().__init__(items)
         self.events = events
 
-    def filter_by_time_range(self, start: float, end: float) -> List[SignalEvent]:
-        return filter_by_time_range(self.events, start, end)
 
+class SignalMessageList(SignalCollection):
 
-class SignalMessageList:
-
-    def __init__(self, frames: List[SignalMessage]):
+    def __init__(self, frames: List[SignalMessage], items: List[T]):
+        super().__init__(items)
         self.frames = frames
-
-    def filter_by_time_range(self, start: float, end: float) -> List[SignalMessage]:
-        return filter_by_time_range(self.frames, start, end)
-
