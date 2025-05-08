@@ -4,18 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bee55ec1-ea53-402b-811b-c61d8deb3eeb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SSET.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="bee55ec1-ea53-402b-811b-c61d8deb3eeb" name="Changes" comment="More editorial; moved some of the actor 'reveal'.&#10;&#10;Removed the taxa equivalent names; this isn't about animals, it's about comparison. I'm thinking that removing the common names it makes the reader consider the comparison as opposed to any 'biases' they may hold on cats.&#10;&#10;Moved the tables around; we have 8 chapters now.&#10;&#10;Items to reflect on at the bottom... not really definitive ideas -- more like items to include/discuss.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collections/collections.py" beforeDir="false" afterPath="$PROJECT_DIR$/collections/collections.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/primitives.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/primitives.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/signal_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/signal_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/time_frequency_frame.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/time_frequency_frame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discussion.md" beforeDir="false" afterPath="$PROJECT_DIR$/discussion.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/theory_of_signal_semiotics.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/theory_of_signal_semiotics.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/semiotic/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/semiotic/interpreter.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,6 +60,47 @@
       <option name="presentableId" value="Default" />
       <updated>1746414805722</updated>
     </task>
+    <task id="LOCAL-00001" summary="Need to verify that the intent of 'Transformation' is getting at the symbol, not the signal. I have noticed this idea/concept misquoted.">
+      <option name="closed" value="true" />
+      <created>1746589679662</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1746589679662</updated>
+    </task>
+    <task id="LOCAL-00002" summary="changed local project structure.">
+      <option name="closed" value="true" />
+      <created>1746589913406</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746589913406</updated>
+    </task>
+    <task id="LOCAL-00003" summary="&quot;All Your basse Are Belong to Us.&quot;">
+      <option name="closed" value="true" />
+      <created>1746594612502</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1746594612503</updated>
+    </task>
+    <task id="LOCAL-00004" summary="More editorial; this appears to be better organized now, but there are opportunities for expansion of ideas AND typos to deal with. See TT &amp; EM.&#10;&#10;The formatting is coming along; I like the idea of the chapter header and overview being in a box. &#10;&#10;The figures in the tables still need cites and attributions as do any links. &#10;&#10;The idea today is to paint broad strokes and get the idea down; I have full confidence this ccan be achieved, the question is are my hunches right and is it now feasible to do so.">
+      <option name="closed" value="true" />
+      <created>1746595127948</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1746595127948</updated>
+    </task>
+    <task id="LOCAL-00005" summary="More editorial; moved some of the actor 'reveal'.&#10;&#10;Removed the taxa equivalent names; this isn't about animals, it's about comparison. I'm thinking that removing the common names it makes the reader consider the comparison as opposed to any 'biases' they may hold on cats.&#10;&#10;Moved the tables around; we have 8 chapters now.&#10;&#10;Items to reflect on at the bottom... not really definitive ideas -- more like items to include/discuss.">
+      <option name="closed" value="true" />
+      <created>1746596905089</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1746596905089</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -65,5 +113,14 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Need to verify that the intent of 'Transformation' is getting at the symbol, not the signal. I have noticed this idea/concept misquoted." />
+    <MESSAGE value="changed local project structure." />
+    <MESSAGE value="&quot;All Your Base Are Belong to Us.&quot;" />
+    <MESSAGE value="&quot;All Your Base Are Belong to Us.&quot;" />
+    <MESSAGE value="More editorial; this appears to be better organized now, but there are opportunities for expansion of ideas AND typos to deal with. See TT &amp; EM.&#10;&#10;The formatting is coming along; I like the idea of the chapter header and overview being in a box. &#10;&#10;The figures in the tables still need cites and attributions as do any links. &#10;&#10;The idea today is to paint broad strokes and get the idea down; I have full confidence this ccan be achieved, the question is are my hunches right and is it now feasible to do so." />
+    <MESSAGE value="More editorial; moved some of the actor 'reveal'.&#10;&#10;Removed the taxa equivalent names; this isn't about animals, it's about comparison. I'm thinking that removing the common names it makes the reader consider the comparison as opposed to any 'biases' they may hold on cats.&#10;&#10;Moved the tables around; we have 8 chapters now.&#10;&#10;Items to reflect on at the bottom... not really definitive ideas -- more like items to include/discuss." />
+    <option name="LAST_COMMIT_MESSAGE" value="More editorial; moved some of the actor 'reveal'.&#10;&#10;Removed the taxa equivalent names; this isn't about animals, it's about comparison. I'm thinking that removing the common names it makes the reader consider the comparison as opposed to any 'biases' they may hold on cats.&#10;&#10;Moved the tables around; we have 8 chapters now.&#10;&#10;Items to reflect on at the bottom... not really definitive ideas -- more like items to include/discuss." />
   </component>
 </project>
