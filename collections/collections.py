@@ -47,7 +47,6 @@ class EmitterGroup:
     # Bias comparison or merge
 
 
-
 class EMFieldArray:
 
     def __init__(self, fields: List[EMField]):
@@ -55,7 +54,6 @@ class EMFieldArray:
 
     def filter_by_time_range(self, start: float, end: float) -> List[EMField]:
         return [f for f in self.fields if start <= f.timestamp <= end]
-
 
 
 class SignalEventList:
@@ -70,8 +68,6 @@ class SignalEventList:
     def __eq__(self, other):
         return (super().__eq__(other) and
                 self.carrier_freq == other.carrier_freq)
-
-
 
 
 class SignalMessageList:
