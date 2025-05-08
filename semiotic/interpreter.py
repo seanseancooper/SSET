@@ -2,29 +2,25 @@
 #
 #  This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 #
-
-# Semiotic Layer: Meaning, Context, Intent
-# Interpret the signal as a communicative act. What system is speaking? What’s its intent or function?
-#
-# Emitter profiling: Who/what emits this?
-# Temporal behavior: When and how often does it transmit?
-# Spatial analysis: Where is it, where is it pointed?
-# Intent modeling: What operational purpose is this signal serving?
-#
 # ### signal_semiotics_toolkit/semiotic/interpreter.py
 from typing import Optional, Dict, Any
 
 
 class SignalInterpretation:
-    # this encapsulates a result, right?
-
+    # Semiotic Layer: Meaning, Context, Intent
+    # Interpret the signal as a communicative act. What system is speaking? What’s its intent or function?
+    #
+    # Emitter profiling: Who/what emits this?
+    # Temporal behavior: When and how often does it transmit?
+    # Spatial analysis: Where is it, where is it pointed?
+    # Intent modeling: What operational purpose is this signal serving?
 
     def __init__(
         self,
         intent: Optional[str],
         activity_pattern: Optional[str],
-        signal_bias_profile: Dict[str, Any],
-        variance_features: Dict[str, Any],
+        signal_bias_profile: Dict[str, Any],  # repr of signal bias {'key', val}
+        variance_features: Dict[str, Any],   # repr of the Variance, Emitter has bias.
         confidence: float
     ):
         self.intent = intent                            #
