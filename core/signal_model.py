@@ -134,8 +134,9 @@ class SignalFrame:
         return (
                 isinstance(other, SignalFrame)
                 and self.timestamp == other.timestamp
+                and self.carrier_freq == other.carrier_freq
+                and self.bandwidth == other.bandwidth
                 and self.domain == other.domain
-                # and self.location == other.location
         )
 
 
