@@ -3,7 +3,7 @@ from core.signal_model import SignalFrame
 from core.time_frequency_frame import TimeFrequencyFrame
 from typing import Dict, List
 
-
+# make this a decorator and use it instead
 def filter_by_time_range(filterable, start: float, end: float) -> List:
     return [f for f in filterable if start <= f.timestamp <= end]
 
