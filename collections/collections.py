@@ -69,7 +69,6 @@ class SignalEventList:
         return filter_by_time_range(self.events, start, end)
 
 
-
 class SignalMessageList:
 
     def __init__(self, frames: List[SignalMessage]):
