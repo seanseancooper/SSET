@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bee55ec1-ea53-402b-811b-c61d8deb3eeb" name="Changes" comment="changed project structure.">
+    <list default="true" id="bee55ec1-ea53-402b-811b-c61d8deb3eeb" name="Changes" comment="done: it could be a decorator, but I like this better; I can add the other methods to this class (cleaner, less repetition)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,6 +15,13 @@
   <component name="ChangesViewManager">
     <option name="groupingKeys">
       <option value="directory" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
     </option>
   </component>
   <component name="Git.Settings">
@@ -30,13 +37,14 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -141,7 +149,167 @@
       <option name="project" value="LOCAL" />
       <updated>1746677281227</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="changed project structure.">
+      <option name="closed" value="true" />
+      <created>1746679486583</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1746679486583</updated>
+    </task>
+    <task id="LOCAL-00013" summary="EmitterGroup changed to implement get_emitter(), get_emitters_by_platform(p).">
+      <option name="closed" value="true" />
+      <created>1746679534541</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1746679534541</updated>
+    </task>
+    <task id="LOCAL-00014" summary="comparison should also take into account carrier_freq &amp; bandwidth.">
+      <option name="closed" value="true" />
+      <created>1746679743917</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1746679743917</updated>
+    </task>
+    <task id="LOCAL-00015" summary="removed bandwidth.">
+      <option name="closed" value="true" />
+      <created>1746680186078</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746680186078</updated>
+    </task>
+    <task id="LOCAL-00016" summary="removed as done.">
+      <option name="closed" value="true" />
+      <created>1746680244880</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1746680244880</updated>
+    </task>
+    <task id="LOCAL-00017" summary="moved collection classes to collections.py">
+      <option name="closed" value="true" />
+      <created>1746680600091</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1746680600091</updated>
+    </task>
+    <task id="LOCAL-00018" summary="spacing.">
+      <option name="closed" value="true" />
+      <created>1746680653921</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1746680653921</updated>
+    </task>
+    <task id="LOCAL-00019" summary="added for module resolution.">
+      <option name="closed" value="true" />
+      <created>1746680677574</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1746680677574</updated>
+    </task>
+    <task id="LOCAL-00020" summary="added for module resolution.">
+      <option name="closed" value="true" />
+      <created>1746680741820</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1746680741820</updated>
+    </task>
+    <task id="LOCAL-00021" summary="changed method name to get_*_by_platform_type">
+      <option name="closed" value="true" />
+      <created>1746681707857</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1746681707857</updated>
+    </task>
+    <task id="LOCAL-00022" summary="changed method name to filter_by_time_range to fit my naming convention.">
+      <option name="closed" value="true" />
+      <created>1746681754062</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1746681754062</updated>
+    </task>
+    <task id="LOCAL-00023" summary="deleted comment">
+      <option name="closed" value="true" />
+      <created>1746681774075</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1746681774075</updated>
+    </task>
+    <task id="LOCAL-00024" summary="deleted comment">
+      <option name="closed" value="true" />
+      <created>1746681791531</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1746681791531</updated>
+    </task>
+    <task id="LOCAL-00025" summary="refactored naming to fit convention.">
+      <option name="closed" value="true" />
+      <created>1746681883812</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1746681883812</updated>
+    </task>
+    <task id="LOCAL-00026" summary="pulled filter_by_time_range out to a static method; thinking this is could be decorator given it's the ssame call, what I don't want all these to be a subclass of X.">
+      <option name="closed" value="true" />
+      <created>1746683322175</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1746683322175</updated>
+    </task>
+    <task id="LOCAL-00027" summary="indent.">
+      <option name="closed" value="true" />
+      <created>1746683344576</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1746683344576</updated>
+    </task>
+    <task id="LOCAL-00028" summary="todo: this could be a decorator">
+      <option name="closed" value="true" />
+      <created>1746684864767</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1746684864767</updated>
+    </task>
+    <task id="LOCAL-00029" summary="todo: I made a list of all the new methods needed for these classes yesterday afternoon while planning this refactor.">
+      <option name="closed" value="true" />
+      <created>1746684972820</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1746684972820</updated>
+    </task>
+    <task id="LOCAL-00030" summary="spacing">
+      <option name="closed" value="true" />
+      <created>1746684992528</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1746684992528</updated>
+    </task>
+    <task id="LOCAL-00031" summary="done: it could be a decorator, but I like this better; I can add the other methods to this class (cleaner, less repetition)">
+      <option name="closed" value="true" />
+      <created>1746685440756</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1746685440756</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,9 +324,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Need to verify that the intent of 'Transformation' is getting at the symbol, not the signal. I have noticed this idea/concept misquoted." />
-    <MESSAGE value="changed local project structure." />
-    <MESSAGE value="&quot;All Your Base Are Belong to Us.&quot;" />
     <MESSAGE value="&quot;All Your Base Are Belong to Us.&quot;" />
     <MESSAGE value="More editorial; this appears to be better organized now, but there are opportunities for expansion of ideas AND typos to deal with. See TT &amp; EM.&#10;&#10;The formatting is coming along; I like the idea of the chapter header and overview being in a box. &#10;&#10;The figures in the tables still need cites and attributions as do any links. &#10;&#10;The idea today is to paint broad strokes and get the idea down; I have full confidence this ccan be achieved, the question is are my hunches right and is it now feasible to do so." />
     <MESSAGE value="More editorial; moved some of the actor 'reveal'.&#10;&#10;Removed the taxa equivalent names; this isn't about animals, it's about comparison. I'm thinking that removing the common names it makes the reader consider the comparison as opposed to any 'biases' they may hold on cats.&#10;&#10;Moved the tables around; we have 8 chapters now.&#10;&#10;Items to reflect on at the bottom... not really definitive ideas -- more like items to include/discuss." />
@@ -167,6 +332,23 @@
     <MESSAGE value="first pass at collections classes." />
     <MESSAGE value="refactored notes &amp; comments." />
     <MESSAGE value="changed project structure." />
-    <option name="LAST_COMMIT_MESSAGE" value="changed project structure." />
+    <MESSAGE value="EmitterGroup changed to implement get_emitter(), get_emitters_by_platform(p)." />
+    <MESSAGE value="comparison should also take into account carrier_freq &amp; bandwidth." />
+    <MESSAGE value="removed bandwidth." />
+    <MESSAGE value="removed as done." />
+    <MESSAGE value="moved collection classes to collections.py" />
+    <MESSAGE value="spacing." />
+    <MESSAGE value="added for module resolution." />
+    <MESSAGE value="changed method name to get_*_by_platform_type" />
+    <MESSAGE value="changed method name to filter_by_time_range to fit my naming convention." />
+    <MESSAGE value="deleted comment" />
+    <MESSAGE value="refactored naming to fit convention." />
+    <MESSAGE value="pulled filter_by_time_range out to a static method; thinking this is could be decorator given it's the ssame call, what I don't want all these to be a subclass of X." />
+    <MESSAGE value="indent." />
+    <MESSAGE value="todo: this could be a decorator" />
+    <MESSAGE value="todo: I made a list of all the new methods needed for these classes yesterday afternoon while planning this refactor." />
+    <MESSAGE value="spacing" />
+    <MESSAGE value="done: it could be a decorator, but I like this better; I can add the other methods to this class (cleaner, less repetition)" />
+    <option name="LAST_COMMIT_MESSAGE" value="done: it could be a decorator, but I like this better; I can add the other methods to this class (cleaner, less repetition)" />
   </component>
 </project>
