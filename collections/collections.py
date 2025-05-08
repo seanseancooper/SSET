@@ -36,13 +36,11 @@ class EmitterGroup:
     def __init__(self, emitters: Dict[str, Emitter]):
         self.emitters = emitters
 
-    # Lookup by ID
     def get_emitter(self, _id):
         return self.emitters[_id]
 
-    # Grouping by platform_type
-    def get_emitters_by_platform_type(self, _platform):
-        return [self.emitters[id] for id in self.emitters if self.emitters[id].platform_type is _platform]
+    def get_emitters_by_platform_type(self, platform_type):
+        return [self.emitters[id] for id in self.emitters if self.emitters[id].platform_type is platform_type]
 
     # Bias comparison or merge
 
