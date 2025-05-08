@@ -10,6 +10,7 @@ import numpy as np
 
 
 class Emitter:
+
     def __init__(self,
                  id: str,
                  description: str,
@@ -41,6 +42,12 @@ class Emitter:
     def set_known_bias(self, known_bias: Optional[Dict[str, Any]]):
         self.known_bias = known_bias
 
+    def get_known_bias_value(self, meta_key: str):
+        return self.known_bias[meta_key]
+
+    def set_known_bias_key(self, meta_key: str, meta_val):
+        self.known_bias[meta_key] = meta_val
+
     def __eq__(self, other):
         return ((self.id == other.id) and
                 (self.platform_type == other.platform_type)
@@ -49,11 +56,13 @@ class Emitter:
 
 class EMField:
 
+    # add methods for location lat, lon & geohash
+
     def __init__(
         self,
         timestamp: float,
         location: Tuple[float, float, Optional[float]],
-        domain: str, # associative key to ?
+        domain: str,  # associative key to ?
         data: np.ndarray,
         metadata: Optional[Dict[str, Any]] = None
     ):
@@ -84,6 +93,12 @@ class EMField:
     def set_metadata(self, metadata: Optional[Dict[str, Any]]):
         self.metadata = metadata
 
+    def get_metadata_value(self, meta_key: str):
+        return self.metadata[meta_key]
+
+    def set_metadata_key(self, meta_key: str, meta_val):
+        self.metadata[meta_key] = meta_val
+
     def __eq__(self, other):
         return (self.timestamp == other.timestamp and
                 self.location == other.location and
@@ -92,6 +107,7 @@ class EMField:
 
 
 class SignalEvent(EMField):
+    # add methods for location lat, lon & geohash
     def __init__(
         self,
         timestamp: float,
@@ -149,6 +165,7 @@ class SignalEvent(EMField):
 
 
 class SignalMessage(SignalEvent):
+    # add methods for location lat, lon & geohash
     def __init__(
         self,
         timestamp: float,

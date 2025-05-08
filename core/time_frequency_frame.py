@@ -10,10 +10,14 @@ from typing import Optional, Dict, Any, List
 
 class TimeFrequencyFrame:
     """
-    Represents a signal as a matrix across time and frequency dimensions.
-    Each cell captures intensity, amplitude, or complex energy.
+    Transformation:
+    A TimeFrequencyFrame captures temporal and spectral features for a slice of of spectrum bounded by frequency range.
+    The range can be further sliced along a either the 'time' or 'frequency' axis into a new TimeFrequencyFrame (in
+    either domain). TimeFrequencyFrame can calculate total energy across the frame using energy(), or be plotted using
+    the plot() method.
     """
 
+    # add methods for metadata i/o
     def __init__(self,
                  start_time: float,
                  duration: float,
@@ -55,6 +59,12 @@ class TimeFrequencyFrame:
 
     def get_metadata(self) -> Optional[Dict[str, Any]]:
         return self.metadata
+
+    def get_metadata_value(self, meta_key: str):
+        return self.metadata[meta_key]
+
+    def set_metadata_key(self, meta_key: str, meta_val):
+        self.metadata[meta_key] = meta_val
 
     def get_time_axis(self) -> np.ndarray:
         return np.linspace(self.start_time, self.start_time + self.duration, self.tf_matrix.shape[0])
