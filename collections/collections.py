@@ -1,7 +1,7 @@
 from core.primitives import Emitter, EMField, SignalEvent, SignalMessage
 from core.signal_model import SignalFrame
 from core.time_frequency_frame import TimeFrequencyFrame
-from typing import Optional, Generic, T, Dict, List, Any, Tuple, Union
+from typing import Any, Optional, Generic, T, Dict, List, Tuple, Union
 
 
 class SignalCollection(Generic[T]):
@@ -16,10 +16,14 @@ class SignalCollection(Generic[T]):
 
 
 class SignalFrameArray(SignalCollection):
-    # transform according to a function
 
     def __init__(self, items: List[SignalFrame]):
         super().__init__(items)
+
+    def mapped(self, f):
+        import itertools
+        # transform according to a function f; this is wrong.
+        return itertools.product(self.items, f)
 
     def select_range(self, start: float, end: float) -> List[SignalFrame]:
         return [f for f in self.items if start <= f.timestamp <= end]
@@ -32,10 +36,14 @@ class SignalFrameArray(SignalCollection):
 
 
 class TimeFrequencyFrameList(SignalCollection):
-    # transform according to a function
 
     def __init__(self, items: List[TimeFrequencyFrame]):
         super().__init__(items)
+
+    def mapped(self, f):
+        import itertools
+        # transform according to a function f; this is wrong.
+        return itertools.product(self.items, f)
 
     def select_range(self, start: float, end: float) -> List[TimeFrequencyFrame]:
         return [f for f in self.items if start <= f.start_time <= end]
@@ -48,7 +56,6 @@ class TimeFrequencyFrameList(SignalCollection):
 
 
 class EmitterGroup:
-    # Bias dict comparison (in what way?)
 
     def __init__(self, emitters: Dict[str, Emitter]):
         self.emitters = emitters
@@ -58,6 +65,12 @@ class EmitterGroup:
 
     def get_emitters_by_platform_type(self, platform_type):
         return [self.emitters[id] for id in self.emitters if self.emitters[id].platform_type is platform_type]
+
+    # Bias dict comparison (in what way?)
+    def compare_biases(self, x_biases: Optional[Dict[str, Any]], y_biases: Optional[Dict[str, Any]], ):
+        # number of shared key, value pairs across dicts
+        shared_items = {k: x_biases[k] for k in x_biases if k in y_biases and x_biases[k] == y_biases[k]}
+        return len(shared_items)
 
     # Bias dict merge
     def merge_biases(self, new_biases: Optional[Dict[str, Any]]):
@@ -81,7 +94,7 @@ class EmitterGroup:
 
 class EMFieldArray(SignalCollection):
 
-    def __init__(self, items: List[T]):
+    def __init__(self, items: List[EMField]):
         super().__init__(items)
 
 
