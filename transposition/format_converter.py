@@ -6,16 +6,26 @@
 # Transposition Layer: Making the Invisible 'Perceivable'
 # Converts raw EM data into formats that can be sensed and interacted with...
 
-# TEXT:
-#       JSON
-#       RAW?
-#       CSV
-#       TSV
-# BINARY
-#       raster formats:         jpeg, gif, tiff,
-#       vector formats:         SVG, OL vector,
-#       serialized formats:     pickle, HD5,
-#       data formats:           NetCDF, xioarray, ndarray
+# VISUAL Transposition Layer
+
+#       IMAGES
+#               raster formats:         jpeg, tiff
+#               vector formats:         SVG, OL vector,
+#               serialized formats:     pickle, HD5, NetCDF
+#               ndarray formats:        ndarray, xioarray
+
+#       TEXT
+#               formats:                JSON, CSV, TSV
+#               alpha:                  to_text
+#               numeric:                to_<number_type>
+#                   vector:             to_vector
+
+# AUDIBLE Transposition Layer
+#               formats:                mp3, wav
+#               array:                  ndarray, xioarray
+
+
+
 
 # READING FORMATS
 # [FormatReader(format_type, data)]: accept a format_type and read data.
@@ -24,6 +34,10 @@
 # read from array: This is the default, core op + JSON
 # read from file of type 'format': Reading is semantic for some formats, and not all data is needed.
 # read from store, database, persist layer: read off MQ, db or other structured store (an S3 bucket)
+
+
+
+
 
 # WRITING FORMATS
 # [FormatWriter(format_type, format_spec)]: accept a format_type (input), a format spec (output) and write data.
