@@ -56,8 +56,6 @@ class Emitter:
 
 class EMField:
 
-    # add methods for location lat, lon & geohash
-
     def __init__(
         self,
         timestamp: float,
@@ -67,7 +65,7 @@ class EMField:
         metadata: Optional[Dict[str, Any]] = None
     ):
         self.timestamp = timestamp
-        self.location = location                # lat, lon, optional altitude. static or mutatable?
+        self.location = location                # lat, lon, optional altitude.
         self.domain = domain                    # 'time', 'frequency', 'spatial', 'symbolic'
         self.data = data
         self.metadata = metadata or {}
@@ -77,6 +75,12 @@ class EMField:
 
     def get_location(self) -> Tuple[float, float, Optional[float]]:
         return self.location
+
+    def get_lat_lon(self) -> Tuple[float, float]:
+        return self.location[0], self.location[1]
+
+    def get_altitude(self) -> Optional[float]:
+        return self.location[2] if self.location[2] else None
 
     def get_domain(self) -> str:
         return self.domain
@@ -140,10 +144,10 @@ class SignalEvent(EMField):
     def get_bandwidth(self) -> float:
         return self.bandwidth
 
-    def set_emitter(self, emitter): # could return Optional[Emitter]
+    def set_emitter(self, emitter: Emitter):
         self.emitter = emitter
 
-    def set_emitters(self, emitters): # also could return Optional[Emitter]
+    def set_emitters(self, emitters: List[Emitter]):
         """ set emitter with a filtered list of [Emitter] """
         self.emitter = [e for e in emitters if type(e) is Emitter]
 
