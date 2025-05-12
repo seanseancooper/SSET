@@ -5,7 +5,11 @@
 # format_registry.py
 from typing import Callable, Dict, Optional, Any
 import numpy as np
-
+import csv
+from PIL import Image
+from scipy.io import wavfile
+import h5py
+import netCDF4
 
 class DataFormat:
     def __init__(
@@ -34,9 +38,62 @@ class DataFormat:
             raise NotImplementedError(f"No writer implemented for {self.name}")
         return self.writer(file_path, array, **self.options)
 
-    def convert_to(self, target: 'DataFormat', source_path: str, target_path: str):
-        data = self.read(source_path)
-        target.write(target_path, data)
+
+# === Reader/Writer Implementations ===
+
+def csv_reader(file_path: str, **kwargs) -> np.ndarray:
+    with open(file_path, newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        data = [list(map(float, row)) for row in reader]
+    return np.array(data)
+
+def csv_writer(file_path: str, array: np.ndarray, **kwargs):
+    with open(file_path, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        for row in array:
+            writer.writerow(row)
+    return True
+
+def jpeg_reader(file_path: str, **kwargs) -> np.ndarray:
+    img = Image.open(file_path).convert("RGB")
+    return np.array(img)
+
+def jpeg_writer(file_path: str, array: np.ndarray, **kwargs):
+    img = Image.fromarray(array.astype('uint8'))
+    img.save(file_path, format='JPEG')
+    return True
+
+def wav_reader(file_path: str, **kwargs) -> np.ndarray:
+    rate, data = wavfile.read(file_path)
+    return data.astype(np.float32) / np.iinfo(data.dtype).max
+
+def wav_writer(file_path: str, array: np.ndarray, **kwargs):
+    rate = kwargs.get("rate", 44100)
+    scaled = (array * 32767).astype(np.int16)
+    wavfile.write(file_path, rate, scaled)
+    return True
+
+def netcdf_reader(file_path: str, **kwargs) -> np.ndarray:
+    with netCDF4.Dataset(file_path, 'r') as ds:
+        var_name = kwargs.get("variable") or list(ds.variables.keys())[0]
+        return ds.variables[var_name][:]
+
+def netcdf_writer(file_path: str, array: np.ndarray, **kwargs):
+    with netCDF4.Dataset(file_path, 'w', format='NETCDF4') as ds:
+        ds.createDimension('dim0', array.shape[0])
+        if array.ndim > 1:
+            ds.createDimension('dim1', array.shape[1])
+        dims = ('dim0',) if array.ndim == 1 else ('dim0', 'dim1')
+        var = ds.createVariable('data', 'f4', dims)
+        var[:] = array
+    return True
+
+def xioarray_reader(file_path: str, **kwargs) -> np.ndarray:
+    return np.load(file_path)
+
+def xioarray_writer(file_path: str, array: np.ndarray, **kwargs):
+    np.save(file_path, array)
+    return True
 
 # Placeholder reader/writer implementations
 
@@ -48,7 +105,9 @@ def basic_writer(file_path: str, array: np.ndarray, **kwargs):
     print(f"[WRITE] {file_path} with shape {array.shape} and options {kwargs}")
     return True
 
+
 # === Format Domains ===
+
 def make_format_domain(entries: Dict[str, Dict[str, str]]) -> Dict[str, DataFormat]:
     return {
         name: DataFormat(
@@ -59,7 +118,6 @@ def make_format_domain(entries: Dict[str, Dict[str, str]]) -> Dict[str, DataForm
             basic_writer
         ) for name, entry in entries.items()
     }
-
 
 raster_formats = make_format_domain({
     "jpeg": {"mime": "image/jpeg", "ext": ".jpg"},
@@ -93,6 +151,22 @@ array_formats = make_format_domain({
     "xioarray": {"mime": "application/x-xio", "ext": ".xio"},
 })
 
+# Replace basic reader/writer with real ones
+textual_formats["csv"].reader = csv_reader
+textual_formats["csv"].writer = csv_writer
+
+raster_formats["jpeg"].reader = jpeg_reader
+raster_formats["jpeg"].writer = jpeg_writer
+
+audio_formats["wav"].reader = wav_reader
+audio_formats["wav"].writer = wav_writer
+
+scientific_formats["netcdf"].reader = netcdf_reader
+scientific_formats["netcdf"].writer = netcdf_writer
+
+array_formats["xioarray"].reader = xioarray_reader
+array_formats["xioarray"].writer = xioarray_writer
+
 # Unified Registry
 format_registry: Dict[str, Dict[str, DataFormat]] = {
     "raster": raster_formats,
@@ -102,12 +176,6 @@ format_registry: Dict[str, Dict[str, DataFormat]] = {
     "textual": textual_formats,
     "array": array_formats,
 }
-
-def find_format(name: str) -> DataFormat:
-    for domain_formats in format_registry.values():
-        if name in domain_formats:
-            return domain_formats[name]
-    raise ValueError(f"Format '{name}' not found in registry")
 
 
 def list_available_formats():
