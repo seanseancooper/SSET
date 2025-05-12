@@ -1,7 +1,10 @@
 from core.primitives import Emitter, EMField, SignalEvent, SignalMessage
 from core.signal_model import SignalFrame
 from core.time_frequency_frame import TimeFrequencyFrame
-from typing import Any, Optional, Generic, T, Dict, List, Tuple, Union
+from typing import Any, Optional, Generic, TypeVar, List, Dict, Callable
+import re
+
+T = TypeVar("T")
 
 
 class SignalCollection(Generic[T]):
@@ -9,45 +12,36 @@ class SignalCollection(Generic[T]):
         self.items = items
 
     def filter_by_time(self, start: float, end: float) -> List[T]:
-        return [i for i in self.items if start <= i.timestamp <= end]
+        """Return items within [start, end] timestamp range."""
+        return [i for i in self.items if hasattr(i, "timestamp") and start <= i.timestamp <= end]
 
     def sort_by_time(self):
-        self.items.sort(key=lambda x: x.timestamp)
+        """Sort items in-place by timestamp, if available."""
+        self.items.sort(key=lambda x: getattr(x, "timestamp", float('inf')))
+
+    def mapped(self, func: Callable[[T], T]) -> 'SignalCollection[T]':
+        """Apply mutation function to each element."""
+        return SignalCollection([func(item) for item in self.items])
+
+    def __getitem__(self, index):
+        return self.items[index]
+
+    def __iter__(self):
+        return iter(self.items)
 
 
-class SignalFrameArray(SignalCollection):
+class SignalFrameList(SignalCollection[SignalFrame]):
+    def group_to_time_domain(self):
+        return SignalFrameList([f.to_time_domain() for f in self.items if f.domain == "frequency"])
 
-    def __init__(self, items: List[SignalFrame]):
-        super().__init__(items)
-
-    def mapped(self, f):
-        import itertools
-        # transform according to a function f; this is wrong.
-        return itertools.product(self.items, f)
+    def group_to_frequency_domain(self):
+        return SignalFrameList([f.to_frequency_domain() for f in self.items if f.domain == "time"])
 
     def select_range(self, start: float, end: float) -> List[SignalFrame]:
         return [f for f in self.items if start <= f.timestamp <= end]
 
-    def group_to_time_domain(self):
-        return SignalFrameArray([frame.to_time_domain() for frame in self.items if frame.domain == "frequency"])
 
-    def group_to_frequency_domain(self):
-        return SignalFrameArray([frame.to_frequency_domain() for frame in self.items if frame.domain == "time"])
-
-
-class TimeFrequencyFrameList(SignalCollection):
-
-    def __init__(self, items: List[TimeFrequencyFrame]):
-        super().__init__(items)
-
-    def mapped(self, f):
-        import itertools
-        # transform according to a function f; this is wrong.
-        return itertools.product(self.items, f)
-
-    def select_range(self, start: float, end: float) -> List[TimeFrequencyFrame]:
-        return [f for f in self.items if start <= f.start_time <= end]
-
+class TimeFrequencyFrameList(SignalCollection[TimeFrequencyFrame]):
     def group_slice_time(self, start, end):
         return TimeFrequencyFrameList([item.slice_time(start, end) for item in self.items if item.domain == "frequency"])
 
@@ -56,55 +50,54 @@ class TimeFrequencyFrameList(SignalCollection):
 
 
 class EmitterGroup:
-
     def __init__(self, emitters: Dict[str, Emitter]):
         self.emitters = emitters
 
-    def get_emitter(self, _id):
-        return self.emitters[_id]
+    def get_emitter(self, _id: str) -> Optional[Emitter]:
+        return self.emitters.get(_id)
 
-    def get_emitters_by_platform_type(self, platform_type):
-        return [self.emitters[id] for id in self.emitters if self.emitters[id].platform_type is platform_type]
+    def get_emitters_by_platform_type(self, platform_type: str) -> List[Emitter]:
+        return [em for em in self.emitters.values() if em.platform_type == platform_type]
 
-    # Bias dict comparison (in what way?)
-    def compare_biases(self, x_biases: Optional[Dict[str, Any]], y_biases: Optional[Dict[str, Any]], ):
-        # number of shared key, value pairs across dicts
-        shared_items = {k: x_biases[k] for k in x_biases if k in y_biases and x_biases[k] == y_biases[k]}
-        return len(shared_items)
+    def compare_biases(
+        self,
+        x_biases: Optional[Dict[str, Any]],
+        y_biases: Optional[Dict[str, Any]]
+    ) -> int:
+        """Return number of key-value pairs shared between two known_bias dictionaries."""
+        if not x_biases or not y_biases:
+            return 0
+        return sum(1 for k in x_biases if k in y_biases and x_biases[k] == y_biases[k])
 
-    # Bias dict merge
-    def merge_biases(self, new_biases: Optional[Dict[str, Any]]):
+    def merge_biases(self, new_biases: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+        """Combine all known_bias dictionaries from emitters and update with new_biases."""
         all_biases = {}
-        [all_biases.update(emitter.known_bias) for emitter in self.emitters]
-        all_biases.update(new_biases)
+        for emitter in self.emitters.values():
+            if emitter.known_bias:
+                all_biases.update(emitter.known_bias)
+        if new_biases:
+            all_biases.update(new_biases)
         return all_biases
 
-    # search description fields in emitters
-    def search_description(self, query: str):
-        return [emitter.id for emitter in self.emitters if emitter.description.re.matches(query)]
+    def search_description(self, query: str) -> List[str]:
+        """Return emitter IDs where the description matches the regex query."""
+        pattern = re.compile(query, re.IGNORECASE)
+        return [em.id for em in self.emitters.values() if pattern.search(str(em.description))]
 
-    # get list of id
-    def list_ids(self):
-        return [emitter.id for emitter in self.emitters]
+    def list_ids(self) -> List[str]:
+        return list(self.emitters.keys())
 
-    # get list of description
-    def list_descriptions(self):
-        return [emitter.description for emitter in self.emitters]
-
-
-class EMFieldArray(SignalCollection):
-
-    def __init__(self, items: List[EMField]):
-        super().__init__(items)
+    def list_descriptions(self) -> List[str]:
+        return [str(em.description) for em in self.emitters.values()]
 
 
-class SignalEventList(SignalCollection):
-
-    def __init__(self, items: List[SignalEvent]):
-        super().__init__(items)
+class EMFieldList(SignalCollection[EMField]):
+    pass
 
 
-class SignalMessageList(SignalCollection):
+class SignalEventList(SignalCollection[SignalEvent]):
+    pass
 
-    def __init__(self, items: List[SignalMessage]):
-        super().__init__(items)
+
+class SignalMessageList(SignalCollection[SignalMessage]):
+    pass
