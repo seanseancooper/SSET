@@ -3,7 +3,6 @@
 #  This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 #
 # format_registry.py
-
 from typing import Callable, Dict, Optional, Any
 import numpy as np
 
@@ -35,6 +34,9 @@ class DataFormat:
             raise NotImplementedError(f"No writer implemented for {self.name}")
         return self.writer(file_path, array, **self.options)
 
+    def convert_to(self, target: 'DataFormat', source_path: str, target_path: str):
+        data = self.read(source_path)
+        target.write(target_path, data)
 
 # Placeholder reader/writer implementations
 
@@ -46,9 +48,7 @@ def basic_writer(file_path: str, array: np.ndarray, **kwargs):
     print(f"[WRITE] {file_path} with shape {array.shape} and options {kwargs}")
     return True
 
-
 # === Format Domains ===
-
 def make_format_domain(entries: Dict[str, Dict[str, str]]) -> Dict[str, DataFormat]:
     return {
         name: DataFormat(
@@ -59,6 +59,7 @@ def make_format_domain(entries: Dict[str, Dict[str, str]]) -> Dict[str, DataForm
             basic_writer
         ) for name, entry in entries.items()
     }
+
 
 raster_formats = make_format_domain({
     "jpeg": {"mime": "image/jpeg", "ext": ".jpg"},
@@ -92,7 +93,6 @@ array_formats = make_format_domain({
     "xioarray": {"mime": "application/x-xio", "ext": ".xio"},
 })
 
-
 # Unified Registry
 format_registry: Dict[str, Dict[str, DataFormat]] = {
     "raster": raster_formats,
@@ -102,6 +102,12 @@ format_registry: Dict[str, Dict[str, DataFormat]] = {
     "textual": textual_formats,
     "array": array_formats,
 }
+
+def find_format(name: str) -> DataFormat:
+    for domain_formats in format_registry.values():
+        if name in domain_formats:
+            return domain_formats[name]
+    raise ValueError(f"Format '{name}' not found in registry")
 
 
 def list_available_formats():
