@@ -1,16 +1,11 @@
+#  Copyright (c) 2025 Sean D. Cooper
+#
+#  This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+#
 # format_registry.py
 
 from typing import Callable, Dict, Optional, Any
 import numpy as np
-import pandas as pd
-import json
-import pickle
-import csv
-from PIL import Image
-import h5py
-import netCDF4
-from scipy.io import wavfile
-from pydub import AudioSegment
 
 
 class DataFormat:
@@ -42,72 +37,60 @@ class DataFormat:
 
 
 # Placeholder reader/writer implementations
+
 def basic_reader(file_path: str, **kwargs):
     print(f"[READ] {file_path} with options {kwargs}")
     return np.zeros((10, 10))  # Dummy array
-
 
 def basic_writer(file_path: str, array: np.ndarray, **kwargs):
     print(f"[WRITE] {file_path} with shape {array.shape} and options {kwargs}")
     return True
 
 
-# Domain: Raster Formats
-raster_formats = {
-    "jpeg": DataFormat("jpeg", "image/jpeg", ".jpg", basic_reader, basic_writer),
-    "tiff": DataFormat("tiff", "image/tiff", ".tiff", basic_reader, basic_writer),
-}
+# === Format Domains ===
 
-# Domain: Vector / Mapping
-vector_formats = {
-    "svg": DataFormat("svg", "image/svg+xml", ".svg", basic_reader, basic_writer),
-    "ol_vector": DataFormat("ol_vector", "application/json", ".geojson", basic_reader, basic_writer),
-}
+def make_format_domain(entries: Dict[str, Dict[str, str]]) -> Dict[str, DataFormat]:
+    return {
+        name: DataFormat(
+            name,
+            entry["mime"],
+            entry["ext"],
+            basic_reader,
+            basic_writer
+        ) for name, entry in entries.items()
+    }
 
-# Domain: Audio
-audio_formats = {
-    "mp3": DataFormat("mp3", "audio/mpeg", ".mp3", basic_reader, basic_writer),
-    "wav": DataFormat("wav", "audio/wav", ".wav", basic_reader, basic_writer),
-}
+raster_formats = make_format_domain({
+    "jpeg": {"mime": "image/jpeg", "ext": ".jpg"},
+    "tiff": {"mime": "image/tiff", "ext": ".tiff"},
+})
 
-# Domain: Scientific
-scientific_formats = {
-    "hd5": DataFormat("hd5", "application/x-hdf5", ".h5", basic_reader, basic_writer),
-    "netcdf": DataFormat("netcdf", "application/x-netcdf", ".nc", basic_reader, basic_writer),
-}
+vector_formats = make_format_domain({
+    "svg": {"mime": "image/svg+xml", "ext": ".svg"},
+    "ol_vector": {"mime": "application/json", "ext": ".geojson"},
+})
 
-# Domain: Tabular/Text
-textual_formats = {
-    "csv": DataFormat("csv", "text/csv", ".csv", basic_reader, basic_writer),
-    "tsv": DataFormat("tsv", "text/tab-separated-values", ".tsv", basic_reader, basic_writer),
-    "json": DataFormat("json", "application/json", ".json", basic_reader, basic_writer),
-    "pickle": DataFormat("pickle", "application/octet-stream", ".pkl", basic_reader, basic_writer),
-}
+audio_formats = make_format_domain({
+    "mp3": {"mime": "audio/mpeg", "ext": ".mp3"},
+    "wav": {"mime": "audio/wav", "ext": ".wav"},
+})
 
-# Domain: Numpy
-array_formats = {
-    "ndarray": DataFormat("ndarray", "application/octet-stream", ".npy", basic_reader, basic_writer),
-    "xioarray": DataFormat("xioarray", "application/x-xio", ".xio", basic_reader, basic_writer),
-}
+scientific_formats = make_format_domain({
+    "hd5": {"mime": "application/x-hdf5", "ext": ".h5"},
+    "netcdf": {"mime": "application/x-netcdf", "ext": ".nc"},
+})
 
+textual_formats = make_format_domain({
+    "csv": {"mime": "text/csv", "ext": ".csv"},
+    "tsv": {"mime": "text/tab-separated-values", "ext": ".tsv"},
+    "json": {"mime": "application/json", "ext": ".json"},
+    "pickle": {"mime": "application/octet-stream", "ext": ".pkl"},
+})
 
-# === Format Registry (Plugin-Like Structure) ===
-class FormatRegistry:
-    def __init__(self):
-        self.registry: Dict[str, DataFormat] = {}
-
-    def register(self, name: str, format_obj: DataFormat):
-        self.registry[name] = format_obj
-
-    def get(self, name: str) -> Optional[DataFormat]:
-        return self.registry.get(name)
-
-
-def list_available_formats():
-    for domain, formats in format_registry.items():
-        print(f"\n[DOMAIN] {domain.upper()}")
-        for name, fmt in formats.items():
-            print(f" - {name} ({fmt.mime_type}) -> {fmt.extension}")
+array_formats = make_format_domain({
+    "ndarray": {"mime": "application/octet-stream", "ext": ".npy"},
+    "xioarray": {"mime": "application/x-xio", "ext": ".xio"},
+})
 
 
 # Unified Registry
@@ -119,3 +102,10 @@ format_registry: Dict[str, Dict[str, DataFormat]] = {
     "textual": textual_formats,
     "array": array_formats,
 }
+
+
+def list_available_formats():
+    for domain, formats in format_registry.items():
+        print(f"\n[DOMAIN] {domain.upper()}")
+        for name, fmt in formats.items():
+            print(f" - {name} ({fmt.mime_type}) -> {fmt.extension}")
