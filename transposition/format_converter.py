@@ -2,10 +2,30 @@
 #
 #  This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 #
-
-from typing import Callable, Dict, Optional, Type, Any
+from typing import Callable, Dict, Optional, Any
 import pandas as pd
-import numpy as np
+
+# For raster images
+from PIL import Image           # JPEG, TIFF, PNG
+
+# For scientific data formats
+import h5py                     # HDF5
+import netCDF4                  # NetCDF
+
+# For audio formats
+from scipy.io import wavfile    # WAV
+from pydub import AudioSegment  # MP3, WAV
+
+# For vector and geo formats
+import json
+import geopandas as gpd         # GeoJSON / OL vector
+
+# For tabular data
+import csv                      # CSV/TSV
+import pickle                   # Pickle
+
+# For NumPy binary
+import numpy as np              # NPY
 
 
 class DataFormat:
@@ -35,9 +55,8 @@ class DataFormat:
             raise NotImplementedError(f"No writer implemented for {self.name}")
         return self.writer(file_path, array, **self.options)
 
+
 # Placeholder reader/writer implementations
-
-
 def basic_reader(file_path: str, **kwargs):
     print(f"[READ] {file_path} with options {kwargs}")
     return np.zeros((10, 10))  # Dummy array
@@ -72,12 +91,14 @@ raster_formats = {
     "tiff": DataFormat("tiff", "image/tiff", ".tiff", basic_reader, basic_writer),
 }
 
+
 class JpegFormatReader(FormatReader):
     pass
 
 
 class TiffFormatReader(FormatReader):
     pass
+
 
 # Domain: Vector / Mapping
 vector_formats = {
@@ -92,6 +113,7 @@ class SVGFormatReader(FormatReader):
 
 class OLVectorFormatReader(FormatReader):
     pass
+
 
 # Domain: Tabular/Text
 textual_formats = {
@@ -127,8 +149,10 @@ class JSONFormatWriter(FormatWriter):
         path = self.options.get("path")
         pd.DataFrame(array).to_json(path)
 
+
 class PickleFormatReader(FormatReader):
     pass
+
 
 # Domain: Scientific
 scientific_formats = {
@@ -136,8 +160,10 @@ scientific_formats = {
     "netcdf": DataFormat("netcdf", "application/x-netcdf", ".nc", basic_reader, basic_writer),
 }
 
+
 class HD5FormatReader(FormatReader):
     pass
+
 
 class NetCDFFormatReader(FormatReader):
     pass
@@ -158,7 +184,6 @@ class XioArrayFormatReader(FormatReader):
     pass
 
 
-
 # Domain: Audio
 audio_formats = {
     "mp3": DataFormat("mp3", "audio/mpeg", ".mp3", basic_reader, basic_writer),
@@ -175,7 +200,6 @@ class WAVFormatReader(FormatReader):
 
 
 # === Converter ===
-
 class FormatConverter:
     def __init__(self, source_format: DataFormat, target_format: DataFormat):
         self.source_format = source_format
@@ -187,6 +211,7 @@ class FormatConverter:
 
         writer = self.target_format.get_writer(**write_opts)
         writer.write(data)
+
 
 # === Format Registry (Plugin-Like Structure) ===
 class FormatRegistry:
