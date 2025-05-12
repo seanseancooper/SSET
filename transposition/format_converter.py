@@ -3,41 +3,101 @@
 #  This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 #
 
-# Transposition Layer: Making the Invisible 'Perceivable'
-# Converts raw EM data into formats that can be sensed and interacted with...
+import numpy as np
 
-# VISUAL Transposition Layer
+class DataFormat:
 
-#       IMAGES
-#               raster formats:         jpeg, tiff
-#               vector formats:         SVG, OL vector,
-#               serialized formats:     pickle, HD5, NetCDF
-#               ndarray formats:        ndarray, xioarray
+    def __init__(self):
+        self.format_reader = None  # a class that reads the format
+        self.format_reader_method = None  # method that reads
+        self.format_reader_opts = None  # options passed to the reader.
 
-#       TEXT
-#               formats:                JSON, CSV, TSV
-#               alpha:                  to_text
-#               numeric:                to_<number_type>
-#                   vector:             to_vector
+        self.format_writer = None  # a class that writes the format
+        self.format_writer_method = None  # method that writes
+        self.format_writer_opts = None  # options passed to the writer.
 
-# AUDIBLE Transposition Layer
-#               formats:                mp3, wav
-#               array:                  ndarray, xioarray
+        self.config = {}
 
+    def read(self, file):
+        read = f'{self.format_reader}.{self.format_reader_method}'
+        array = np.ndarray  # read(file)
+        return array
 
+    def write(self, file, array):
+        write = f'{self.format_writer}.{self.format_writer}'
+        # return write(filename, array)
+
+class FormatReader:
+
+    def __init__(self, data_format: DataFormat, options):
+        self.data_format = data_format
+        self.data = None
+        self.options = options or {}
+
+    def read(self):
+        self.data_format.read()
+
+    def write(self, filename, array):
+        self.data_format.write(filename, array)
 
 
 # READING FORMATS
-# [FormatReader(format_type, data)]: accept a format_type and read data.
-#       processed = FormatReader(format_type.CSV, data)        # read CSV data into an array
-#
-# read from array: This is the default, core op + JSON
-# read from file of type 'format': Reading is semantic for some formats, and not all data is needed.
-# read from store, database, persist layer: read off MQ, db or other structured store (an S3 bucket)
+# raster formats: jpeg, tiff
+class JpegFormatReader(FormatReader):
+    pass
 
+class TiffFormatReader(FormatReader):
+    pass
 
+class SVGFormatReader(FormatReader):
+    pass
 
+class OLVectorFormatReader(FormatReader):
+    pass
 
+class PickleFormatReader(FormatReader):
+    pass
+
+class HD5FormatReader(FormatReader):
+    pass
+
+class NetCDFFormatReader(FormatReader):
+    pass
+
+class NdArrayFormatReader(FormatReader):
+    pass
+
+class XioArrayFormatReader(FormatReader):
+    pass
+
+class JSONFormatReader(FormatReader):
+    pass
+
+class CSVFormatReader(FormatReader):
+    pass
+
+class TSVFormatReader(FormatReader):
+    pass
+
+class NetCDFFormatReader(FormatReader):
+    pass
+
+class MP3FormatReader(FormatReader):
+    pass
+
+class WAVFormatReader(FormatReader):
+    pass
+
+class FormatWriter:
+
+    def __init__(self, data_format: DataFormat, options):
+        self.data_format = data_format
+        self.data = None
+        self.options = options or {}
+
+    def write(self, array):
+        filename = ''
+        self.data_format.write(filename, array)
 
 # WRITING FORMATS
 # [FormatWriter(format_type, format_spec)]: accept a format_type (input), a format spec (output) and write data.
@@ -49,4 +109,6 @@
 # write to store, database, persist layer: def write to MQ & Elastic for internal offline proccessing.
 
 
-
+class FormatConverter:
+    # Part of the Transposition layer: This class converts raw data into formats that can be interacted with.
+    pass
