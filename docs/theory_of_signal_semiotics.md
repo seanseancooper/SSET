@@ -125,7 +125,8 @@ Goal: Get symbols.
 >> Methods
 >
 >> Examples
->
+> Absence of data; consider 'shadow'; the absence of light.
+> Interferometry; 
 
 >### **Transformation**:
 >> Methods
