@@ -41,6 +41,8 @@ def basic_writer(file_path: str, array: np.ndarray, **kwargs):
     print(f"[WRITE] {file_path} with shape {array.shape} and options {kwargs}")
     return True
 
+
+# this is wrong; there is no convert_to() method in the returned 'mapping' or its' objects.
 def convert_format(source_path, target_path, source_format, target_format):
     find_format(source_format).convert_to(find_format(target_format), source_path, target_path)
 
