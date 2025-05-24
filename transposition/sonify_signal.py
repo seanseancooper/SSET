@@ -10,8 +10,6 @@
 # Spectrogram visualizations
 # Synthetic vision of SAR or IR signals
 # Volumetric/haptic representations (optional / future)
-#
-# Audio renderings of RF/IF signals (sonification)
 
 # sonify_signal(): Map frequency/amplitude to tone and stereo field.
 
